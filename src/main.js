@@ -2,8 +2,13 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
+// 引入常量
+import * as CDATA from "./constant"
+Vue.prototype.CDATA = CDATA
 
-Vue.config.productionTip = false
+// 引入工具函数
+import * as utils from "./utils"
+Vue.prototype.tool = utils
 
 // 初始化css
 // pc
@@ -11,11 +16,20 @@ Vue.config.productionTip = false
 // 移动
 // import "@/assets/css/mb/base.css"
 
-
 // 按需加载element-UI
 import {Button,Message} from "element-ui"
 Vue.use(Button)
 Vue.prototype.$message = Message
+
+// 注册全局过滤器
+import * as filter from '@/filters'
+// 导出一个对象，循环注册在vue上
+Object.keys(filter).forEach(key => {
+    Vue.filter(key, filter[key])
+})
+
+// 是否显示生产模式的消息
+Vue.config.productionTip = false
 
 new Vue({
     router,

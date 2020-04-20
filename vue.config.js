@@ -3,7 +3,7 @@ module.exports = {
     // baseUrl: './',
     publicPath: "./",
     // 输出文件目录
-    outputDir: '商城',
+    outputDir: 'output',
     // 静态资源目录
     assetsDir: "assets",
     // eslint-loader 是否在保存的时候检查

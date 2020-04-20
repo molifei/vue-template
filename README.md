@@ -1,19 +1,21 @@
-# mall
+# template
 
-## Project setup
+## 安装
 ```
 npm install
+cnpm i
+yarn
 ```
 
-### Compiles and hot-reloads for development
+### 启动
 ```
 npm run serve
 ```
 
-### Compiles and minifies for production
+### 打包
 ```
 npm run build
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+### 运行查看
+ [点击链接查看项目](127.0.0.1:2500).
