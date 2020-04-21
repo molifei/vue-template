@@ -4,11 +4,16 @@ import router from './router'
 import store from './store'
 // 引入常量
 import * as CDATA from "./constant"
+
 Vue.prototype.CDATA = CDATA
 
 // 引入工具函数
 import * as utils from "./utils"
 Vue.prototype.tool = utils
+
+// 正则
+import * as reg from "./utils/reg"
+Vue.prototype.reg = reg
 
 // 初始化css
 // pc
@@ -17,7 +22,8 @@ Vue.prototype.tool = utils
 // import "@/assets/css/mb/base.css"
 
 // 按需加载element-UI
-import {Button,Message} from "element-ui"
+import {Button, Message} from "element-ui"
+
 Vue.use(Button)
 Vue.prototype.$message = Message
 

@@ -21,24 +21,24 @@
                 letter: "AbcDefG",
                 phone: 18955911468,
                 idCard: "341023199608142010",
-                arr: ["小明","小白","小兰","小黄","小紫","小刚","小智","小霞"],
-                obj:{
-                    a:1,
-                    b:2,
-                    c:{
-                        t:"小明"
+                arr: ["小明", "小白", "小兰", "小黄", "小紫", "小刚", "小智", "小霞", 4, 5],
+                obj: {
+                    a: 1,
+                    b: 2,
+                    c: {
+                        t: "小明"
                     }
                 },
-                obj2:{}
+                obj2: {}
             }
         },
-        methods:{
-
-        },
+        methods: {},
         mounted() {
             this.tool.test()
             this.obj2 = this.tool.deepCopy(this.obj)
-          this.tool.breakArr(this.arr)
+            this.tool.breakArr(this.arr, 2, 2);
+            this.tool.saveS("obj", this.arr,2)
+            console.log(this.tool.getS("obj"));
         }
     }
 </script>
