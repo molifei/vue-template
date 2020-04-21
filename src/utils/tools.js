@@ -530,6 +530,8 @@ function exitFullscreen() {
                     : alert("切换失败,可尝试Esc退出");
 }
 
+
+
 export {
     test,
     getType,
