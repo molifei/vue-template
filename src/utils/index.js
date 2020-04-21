@@ -11,6 +11,7 @@ const getType = function (data) {
     // let reg = / ^\s]$/gi;
     // console.log(data.match(reg));
     return Object.prototype.toString.call(data).split(" ")[1].split("]")[0]
+    // return Object.prototype.toString.call(data).slice(8, -1)
 };
 
 // 防抖
@@ -136,7 +137,18 @@ const getURL = function (url) {
     if (arguments.length === 0) {
         url = window.location.href
     }
-    return url
+    let parse = url.split("?")[1].split("&");
+
+    // let target = {};
+    // for (let i = 0; i < parse.length; i++) {
+    //     let v = parse[i].split("=");
+    //     target[v[0]] = v[1]
+    // }
+    return parse.reduce((prev, item,) => {
+        let sli = item.split("=")
+        prev[sli[0]] = sli[1]
+        return prev
+    }, {})
 };
 
 // 深拷贝
@@ -237,7 +249,6 @@ const breakArr = function (arr, type = 1, num = 1) {
 // 判断是否支持storage
 function isSupport(type) {
     if (arguments.length === 0) throw  new Error("请传入参数，以便判断浏览器是否支持web存储")
-    console.log(type);
     switch (type) {
         case 1:
             if (!window.localStorage) {
@@ -327,7 +338,6 @@ const entities = function (value) {
 // 判断是否苹果设备
 const isIos = function () {
     let u = navigator.userAgent;
-    console.log(u)
     if (u.indexOf('Android') > -1 || u.indexOf('Linux') > -1) {//安卓手机
         // return "Android";
         return false
@@ -359,6 +369,7 @@ const isPC = function () {
     return flag;
 };
 
+// 判断浏览器
 const browserType = function () {
     let userAgent = navigator.userAgent, //取得浏览器的userAgent字符串
         isOpera = userAgent.indexOf("Opera") > -1, //判断是否Opera浏览器
@@ -387,6 +398,130 @@ const browserType = function () {
     if (isChrome) return "Chrome";
 };
 
+// 获取一个指定范围的随机数  来自MDN
+const getRandom = function (min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min; //含最大值，含最小值
+};
+
+// 获取一个随机颜色值 rgb
+/*
+* opacity 不透明度，默认1，取值 0 to 1
+* */
+const getColor = function (opacity = 1) {
+    return `rgba(${getRandom(0, 255)},${getRandom(0, 255)},${getRandom(0, 255)},${opacity})`
+};
+
+// 驼峰命名法转化横线连接  userName -->  user-name
+/*
+*
+* 若传入符合转化后标准的字符，不会发生任何改变
+* connector：自定义连接符
+*
+* */
+const toName = function (val, connector = "-") {
+    // 类型检测
+    if (getType(val) !== "String" && getType(connector) !== "String") throw new Error("传入参数需为字符串");
+
+    let reg = /\B([A-Z])/g;
+    return val.replace(reg, `${connector}$1`).toLowerCase()
+};
+
+// 横线连接转化驼峰命名法  user-name --> userName
+/*
+*
+* connector：要判断的连接符
+*
+* */
+const toHump = function (val, connector = "-") {
+    // 类型检测
+    if (getType(val) !== "String") throw new Error("传入参数需为字符串");
+
+
+    let a = val.split("");
+    // 去除前后的连接符
+    for (let i = 0; i < a.length; i++) {
+        if (a[0] === connector) {
+            a.shift()
+        } else if (a[a.length - 1] === connector) {
+            a.pop()
+        } else {
+            break
+        }
+    }
+
+    return a.reduce((prev, item, index) => {
+
+        if (item === connector && prev !== "") {
+            item = ""
+            a[index + 1] = a[index + 1].toUpperCase()
+        }
+        return prev += item
+    }, "")
+};
+
+// 传入数字或者字符串，以及个数，生成重复的数字或者字符串
+/*
+*
+* n：重复的次数
+* immediate：如果传入的参数是数字，得出的值是否转化为数字，默认转化  123,2 ===》 123123
+* "小明"，3 === 》"小明小明小明"    123,2 ===》 "123123"
+*
+* */
+const repeat = function (val, n, immediate = true) {
+    // 类型检测
+    if (getType(val) !== "String" && getType(val) !== "Number" && getType(n) !== "Number") throw new Error("参数应为字符串或者数字");
+
+    let str = ""
+    switch (getType(val)) {
+        case "String":
+            for (let i = 0; i < n; i++) {
+                str += val
+            }
+            break;
+        case "Number":
+            val += "";
+            for (let i = 0; i < n; i++) {
+                str += val
+            }
+            str = immediate ? parseInt(str) : str;
+            break;
+    }
+    return str;
+};
+console.log(repeat(2, 2));
+
+// 检测设备是否支持全屏
+function toFullScreen() {
+    let elem = document.body;
+    elem.webkitRequestFullScreen
+        ? elem.webkitRequestFullScreen()
+        : elem.mozRequestFullScreen
+        ? elem.mozRequestFullScreen()
+        : elem.msRequestFullscreen
+            ? elem.msRequestFullscreen()
+            : elem.requestFullScreen
+                ? elem.requestFullScreen()
+                : alert("浏览器不支持全屏");
+}
+
+// 退出全屏
+function exitFullscreen() {
+    let elem = parent.document;
+    elem.webkitCancelFullScreen
+        ? elem.webkitCancelFullScreen()
+        : elem.mozCancelFullScreen
+        ? elem.mozCancelFullScreen()
+        : elem.cancelFullScreen
+            ? elem.cancelFullScreen()
+            : elem.msExitFullscreen
+                ? elem.msExitFullscreen()
+                : elem.exitFullscreen
+                    ? elem.exitFullscreen()
+                    : alert("切换失败,可尝试Esc退出");
+}
+
 export {
     test,
     getType,
@@ -402,4 +537,12 @@ export {
     isIos,
     isPC,
     browserType,
+    getRandom,
+    getColor,
+    toName,
+    toHump,
+    repeat,
+    toFullScreen,
+    exitFullscreen,
+
 }

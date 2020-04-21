@@ -8,6 +8,9 @@
         <p>{{ letter | getLetter(6) }}</p>
         <p>{{ phone | hideNum(3) }}</p>
         <p>{{ idCard | hideNum(2,2) }}</p>
+        <div id="dv" ref="dv">
+
+        </div>
     </div>
 </template>
 
@@ -37,12 +40,18 @@
             this.tool.test()
             this.obj2 = this.tool.deepCopy(this.obj)
             this.tool.breakArr(this.arr, 2, 2);
-            this.tool.saveS("obj", this.arr,2)
-            console.log(this.tool.getS("obj"));
+            this.tool.saveS("obj", this.arr, 2)
+            this.tool.getS("obj")
+            this.tool.getURL();
+            this.$refs.dv.style.backgroundColor=this.tool.getColor(.1)
         }
     }
 </script>
 
 <style lang="less">
-
+    #dv{
+        width: 300px;
+        height: 300px;
+        border: 1px solid #000;
+    }
 </style>
