@@ -8,12 +8,19 @@ import * as CDATA from "./constant"
 Vue.prototype.CDATA = CDATA
 
 // 引入工具函数
-import * as utils from "./utils"
+import * as utils from "./utils/tools.js"
+
 Vue.prototype.tool = utils
 
 // 正则
 import * as reg from "./utils/reg"
+
 Vue.prototype.reg = reg
+
+// loadsh
+import _ from "lodash"
+
+Vue.prototype._ = _
 
 // 初始化css
 // pc

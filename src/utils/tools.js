@@ -1,4 +1,7 @@
 // 工具函数
+import Vue from "vue";
+
+let _this = Vue.prototype;
 
 // 测试
 const test = function () {
@@ -100,7 +103,6 @@ const throttle = function (func, wait, options) {
     };
     return throttled;
 };
-
 /* 用法示例 */
 // container.onmousemove = throttle(getUserAction, 1000);
 // container.onmousemove = throttle(getUserAction, 1000, {
@@ -137,6 +139,13 @@ const getURL = function (url) {
     if (arguments.length === 0) {
         url = window.location.href
     }
+
+    // 判断有无参数 无参数，提示报错
+    if (url.indexOf("?") === -1) {
+        _this.$message.error("getUrl：没有参数可以解析")
+        return
+    }
+
     let parse = url.split("?")[1].split("&");
 
     // let target = {};
@@ -454,7 +463,7 @@ const toHump = function (val, connector = "-") {
     return a.reduce((prev, item, index) => {
 
         if (item === connector && prev !== "") {
-            item = ""
+            item = "";
             a[index + 1] = a[index + 1].toUpperCase()
         }
         return prev += item
@@ -473,7 +482,7 @@ const repeat = function (val, n, immediate = true) {
     // 类型检测
     if (getType(val) !== "String" && getType(val) !== "Number" && getType(n) !== "Number") throw new Error("参数应为字符串或者数字");
 
-    let str = ""
+    let str = "";
     switch (getType(val)) {
         case "String":
             for (let i = 0; i < n; i++) {
@@ -490,7 +499,6 @@ const repeat = function (val, n, immediate = true) {
     }
     return str;
 };
-console.log(repeat(2, 2));
 
 // 检测设备是否支持全屏
 function toFullScreen() {
@@ -521,6 +529,8 @@ function exitFullscreen() {
                     ? elem.exitFullscreen()
                     : alert("切换失败,可尝试Esc退出");
 }
+
+
 
 export {
     test,

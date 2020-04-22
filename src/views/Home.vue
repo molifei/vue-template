@@ -4,7 +4,7 @@
         <p>{{ CDATA.NAME }}</p>
         <p>{{ msg | wordLimit(9)}}</p>
         <p>{{ msg2 | wordLimit(9)}}</p>
-        <p>{{ "" | getDate(true) }}</p>
+        <p>{{ "" | getDate("lll") }}</p>
         <p>{{ letter | getLetter(6) }}</p>
         <p>{{ phone | hideNum(3) }}</p>
         <p>{{ idCard | hideNum(2,2) }}</p>
@@ -42,7 +42,7 @@
             this.tool.breakArr(this.arr, 2, 2);
             this.tool.saveS("obj", this.arr, 2)
             this.tool.getS("obj")
-            this.tool.getURL();
+            this.tool.getURL("www.baidu.com?name=1");
             this.$refs.dv.style.backgroundColor=this.tool.getColor(.1)
         }
     }

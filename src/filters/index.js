@@ -1,6 +1,6 @@
 // 过滤器
 import moment from "moment";
-import {getType} from "@/utils"
+import {getType} from "@/utils/tools.js"
 
 // 时间过滤
 /*
@@ -9,7 +9,7 @@ import {getType} from "@/utils"
 * cn:是否设置中文，默认否
 *
 * */
-const getDate = (value, cn = false, format = "YYYY MM DD hh:mm:ss") => {
+const getDate = (value, format = "YYYY-MM-DD hh:mm:ss", cn = true) => {
     function chinese() {
         return moment.locale('zh-cn', {
             months: '一月_二月_三月_四月_五月_六月_七月_八月_九月_十月_十一月_十二月'.split('_'),
