@@ -2,6 +2,7 @@
 node_modules
 /dist
 /output
+/noUpload
 
 # local env files
 .env.local
@@ -21,4 +22,4 @@ yarn-error.log*
 *.sln
 *.sw?
 package-lock.json
-utils.js
+
