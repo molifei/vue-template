@@ -14,10 +14,13 @@
 
         <input type="text" v-model="msg">
         <el-button @click="copy(msg)">点击复制</el-button>
+        <banner></banner>
     </div>
 </template>
 
 <script>
+    import banner from "@/components/swipe/swipe";
+
     export default {
         name: "Home",
         data() {
@@ -47,7 +50,7 @@
         },
         methods: {
             copy(text) {
-               this.tools.clickCopy(text)
+                this.tools.clickCopy(text)
             }
         },
         mounted() {
@@ -59,6 +62,9 @@
             this.$refs.dv.style.backgroundColor = this.tools.getColor(.1)
             this.obj4 = this.tools.combine(this.obj, this.obj2, this.obj3);
             // console.log(this.obj4)
+        },
+        components: {
+            banner
         }
     }
 </script>
