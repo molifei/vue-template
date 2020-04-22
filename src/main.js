@@ -22,6 +22,9 @@ import _ from "lodash"
 
 Vue.prototype._ = _
 
+// 引入es6-promise，解决IE不支持的问题
+require("es6-promise").polyfill()
+
 
 
 // 初始化css
