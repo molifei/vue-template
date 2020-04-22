@@ -9,6 +9,12 @@ const test = function () {
 };
 
 // 判断类型
+/*
+ * @author WYK
+ * @date 2020.04.20
+ * @param {Any} data    想判断类型的数据
+ * @return {String}     返回数据类型
+ */
 const getType = function (data) {
     // data = "你好 小明"
     // let reg = / ^\s]$/gi;
@@ -19,12 +25,13 @@ const getType = function (data) {
 
 // 防抖
 /*
-*
-* func：执行函数
-* wait：等待时间
-* immediate：是否立即执行函数
-*
-* */
+ * @author WYK
+ * @date 2020.04.20
+ * @param {Function} func    需要执行的函数
+ * @param {Number} wait     等待的时间
+ * @param {Boolean} immediate   是否立即执行函数
+ * @return {Function}     返回执行函数
+ */
 const debounce = function (func, wait, immediate) {
     if (!typeof func === "function" && !typeof wait === "number" && !typeof immediate === "boolean") throw new Error("error:Wrong arguments type");
 
@@ -60,15 +67,17 @@ const debounce = function (func, wait, immediate) {
 
 // 节流：持续触发事件，每隔一段时间，只触发一次事件
 /*
-*
-* func：执行函数
-* wait：等待时间
-* options：
-*         leading：false 表示禁用第一次执行
-*         railing: false 表示禁用停止触发的回调
-*
-* */
+ * @author WYK
+ * @date 2020.04.20
+ * @param {Function} func    需要执行的函数
+ * @param {Number} wait     等待的时间
+ * @param {Object} options
+ *         leading: false 表示禁用第一次执行
+ *         railing: false 表示禁用停止触发的回调
+ * @return {Function}     返回执行函数
+ */
 const throttle = function (func, wait, options) {
+    console.log(func)
 
     if (!typeof func === "function" && !typeof wait === "number" && !(typeof options) === Object) throw new Error("error:Wrong arguments type");
 
@@ -112,12 +121,18 @@ const throttle = function (func, wait, options) {
 //     trailing: false
 // });
 
+/*@description:
+*@author: wuxuan
+*@date: 2020-04-22 16:08:28
+*/
+
 // 数组去重
 /*
-*
-* arr：需去重的数组
-*
-* */
+ * @author WYK
+ * @date 2020.04.20
+ * @param {Array}   arr     需要去重的数组
+ * @return {Array}          已经去重的数组
+ */
 const removeRepeat = function (arr) {
     if (!Array.isArray(arr)) throw new Error("type error:argument must be a Array");
 
@@ -131,10 +146,11 @@ const removeRepeat = function (arr) {
 
 // 获取地址栏参数,转化为对象
 /*
-*
-* 若未传参数，默认解析当前url
-*
-* */
+ * @author WYK
+ * @date 2020.04.20
+ * @param {String}  url     需解析的url地址，如不传，默认解析当前地址
+ * @return {Object}         返回解析出的对象
+ */
 const getURL = function (url) {
     if (arguments.length === 0) {
         url = window.location.href
@@ -161,7 +177,13 @@ const getURL = function (url) {
 };
 
 // 深拷贝
-const deepCopy = function (data) {
+/*
+ * @author WYK
+ * @date 2020.04.20
+ * @param {Array / Object}  data    需要深拷贝的数组或者对象
+ * @return {Array / Object}         返回相应的数组或者对象
+ */
+const deepClone = function (data) {
     // 判断传入参数类型
     let type = getType(data);
     if (type !== "Object" && type !== "Array") {
@@ -185,12 +207,15 @@ const deepCopy = function (data) {
 
 // 分割数组
 /*
-*
-* type：按什么方式分割
-*       1：每组要几个
-*       2：我要几组
-*
-* */
+ * @author WYK
+ * @date 2020.04.20
+ * @param {Array}   arr     需要分割的数组
+ * @param {Number}   type
+ *          1：每组要几个
+ *          2：我要几组
+ * @param {Number}   num     对应的要几个或者要几组
+ * @return {Array}          返回分割完毕的数组
+ */
 const breakArr = function (arr, type = 1, num = 1) {
     // 判断参数类型
     if (getType(arr) !== "Array") throw new Error("请传入一个数组");
@@ -255,6 +280,15 @@ const breakArr = function (arr, type = 1, num = 1) {
 *
 * */
 
+/*
+ * @author WYK
+ * @date 2020.04.21
+ * @param {Number}  type
+ *          1.localStorage
+ *          2.sessionStorage
+ * @return {void}
+ */
+
 // 判断是否支持storage
 function isSupport(type) {
     if (arguments.length === 0) throw  new Error("请传入参数，以便判断浏览器是否支持web存储")
@@ -287,6 +321,14 @@ function sType(type = 1) {
 }
 
 // 存
+/*
+ * @author WYK
+ * @date 2020.04.21
+ * @param {String}      key       存入的键名
+ * @param {Any}         value     存入的键值
+ * @param {Number}      type      存在哪里，默认local
+ * @return {}
+ */
 const saveS = function (key, value, type = 1) {
     // 判断浏览器是否支持存储
     isSupport(type);
@@ -319,21 +361,21 @@ const delS = function (key, type = 1) {
 };
 
 // 全删
-/*
-*
-* type:
-*      1.删除localStorage (默认)
-*      2.删除sessionStorage
-*
-* */
 const delA = function (type = 1) {
     let store = sType(type);
     store.clear()
 };
 
 // 敏感符号转义 xss
+/*
+ * @author WYK
+ * @date 2020.04.20
+ * @param {String}  value   需转义的字符串
+ * @return {String}         返回转义完毕的字符串
+ */
 const entities = function (value) {
     let list = {
+        "'": '&#39;',
         '"': '&quot;',
         '&': '&amp;',
         '<': '&lt;',
@@ -345,6 +387,11 @@ const entities = function (value) {
 };
 
 // 判断是否苹果设备
+/*
+ * @author WYK
+ * @date 2020.04.20
+ * @return {Boolean}         表示是否
+ */
 const isIos = function () {
     let u = navigator.userAgent;
     if (u.indexOf('Android') > -1 || u.indexOf('Linux') > -1) {//安卓手机
@@ -365,6 +412,11 @@ const isIos = function () {
 };
 
 // 判断是否是PC端
+/*
+ * @author WYK
+ * @date 2020.04.20
+ * @return {Boolean}         表示是否
+ */
 const isPC = function () {
     let userAgentInfo = navigator.userAgent,
         Agents = ["Android", "iPhone", "SymbianOS", "Windows Phone", "iPad", "iPod"],
@@ -501,7 +553,7 @@ const repeat = function (val, n, immediate = true) {
 };
 
 // 检测设备是否支持全屏
-function toFullScreen() {
+const toFullScreen = function () {
     let elem = document.body;
     elem.webkitRequestFullScreen
         ? elem.webkitRequestFullScreen()
@@ -512,10 +564,10 @@ function toFullScreen() {
             : elem.requestFullScreen
                 ? elem.requestFullScreen()
                 : alert("浏览器不支持全屏");
-}
+};
 
 // 退出全屏
-function exitFullscreen() {
+const exitFullscreen = function () {
     let elem = parent.document;
     elem.webkitCancelFullScreen
         ? elem.webkitCancelFullScreen()
@@ -528,9 +580,246 @@ function exitFullscreen() {
                 : elem.exitFullscreen
                     ? elem.exitFullscreen()
                     : alert("切换失败,可尝试Esc退出");
+};
+
+// 合并所有传入的对象
+/*
+ * @author WYK
+ * @date 2020-04-22 14:13:43  
+ * @param {Object}      传入想要合并的对象
+ * @return {Object}     返回合并完毕的对象
+ */
+const combine = function (...args) {
+    // console.log(args)
+    return args.reduce((prev, item) => {
+        item = deepClone(item)
+        // console.log(item)
+        for (let key in item) {
+            prev[key] = item[key]
+        }
+        return prev
+    }, {})
+};
+
+// 页面平平滑滚动到指定位置
+/*
+ * @author WYK
+ * @date 2020-04-22 15:14:40
+ * @param {Number}      target      目标位置
+ * @param {Number}      speed       滚动速度
+ * @param {Function}    cb          滚动后的回调函数
+ * @return {void}
+ */
+const scrollTo = function (target, speed, cb) {
+    let offset = window.scrollY;
+    speed = speed || 50;
+    const isScrollUp = target <= offset;
+    if (isScrollUp) {
+        speed = -speed;
+    }
+    const timer = setInterval(() => {
+        offset += speed;
+        window.scrollTo(0, offset);
+        if ((isScrollUp && offset <= target) || (!isScrollUp && offset >= target)) {
+            clearInterval(timer);
+            if (typeof cb === 'function') {
+                cb();
+            }
+        }
+    }, 16);
+};
+
+// 当前位置
+/*
+ * @author WYK
+ * @date 2020-04-22 16:53:59
+ * @param {}
+ * @return {Object}     {x: 0, y: 200}
+ */
+const getScroll = (el = window) => ({
+    x: el.pageXOffset !== undefined ? el.pageXOffset : el.scrollLeft,
+    y: el.pageYOffset !== undefined ? el.pageYOffset : el.scrollTop
+});
+
+//  点击复制
+/*
+ * @author WYK
+ * @date 2020-04-22 16:26:11
+ * @param {Any}     text    复制的文本
+ * @return {}
+ */
+const clickCopy = function (text) {
+    const copyFrom = document.createElement('textarea');
+    const body = document.getElementsByTagName('body')[0];
+    copyFrom.textContent = text;
+    body.appendChild(copyFrom);
+    copyFrom.select();
+    document.execCommand('copy');
+    body.removeChild(copyFrom);
+    _this.$message.success('复制成功', 5);
+};
+
+// 删除字符串中的html代码
+/*
+ * @author WYK
+ * @date 2020-04-22 16:48:14
+ * @param {String}  str     需要删除的字符串
+ * @return {void}
+ */
+const stripHTMLTags = str => str.replace(/<[^>]*>/g, '');
+
+// 隐藏指定标签
+/*
+ * @author WYK
+ * @date 2020-04-22 16:50:06  
+ * @param {ArrayLike}   el
+ * @return {void}
+ */
+const hideTag = (...el) => [...el].forEach(e => (e.style.display = 'none'));
+// 示例 hideTag(document.querySelectorAll('img')); /
+
+// 字符串转base64
+/*
+ * @author WYK
+ * @date 2020-04-22 17:14:15
+ * @param {String}      str
+ * @return {base64}
+ */
+const strToBase64 = function (str) {
+// 对字符串进行编码
+    let encode = encodeURI(str);
+// 对编码的字符串转化base64
+    let base64 = btoa(encode);
+    return base64;
+};
+
+// 图片转base64
+/*
+ * @author WYK
+ * @date 2020-04-22 17:14:42
+ * @param {String}      url     图片地址
+ * @return {base64}
+ */
+const imgToBase64 = function (url) {
+    let canvas = document.createElement("canvas");
+    canvas.width = url.width;
+    canvas.height = url.height;
+    let ctx = canvas.getContext("2d");
+    ctx.drawImage(url, 0, 0, url.width, url.height);
+    let ext = url.src.substring(url.src.lastIndexOf(".") + 1).toLowerCase();
+    let dataURL = canvas.toDataURL("image/" + ext);
+    return dataURL;
+};
+
+// base64解码
+/*
+ * @author WYK
+ * @date 2020-04-22 17:01:07
+ * @param {data}    data    base64码
+ * @return {}
+ */
+const base64Decode = function (data) {
+    var b64 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
+    var o1,
+        o2,
+        o3,
+        h1,
+        h2,
+        h3,
+        h4,
+        bits,
+        i = 0,
+        ac = 0,
+        dec = "",
+        tmp_arr = [];
+    if (!data) {
+        return data;
+    }
+    data += "";
+    do {
+        h1 = b64.indexOf(data.charAt(i++));
+        h2 = b64.indexOf(data.charAt(i++));
+        h3 = b64.indexOf(data.charAt(i++));
+        h4 = b64.indexOf(data.charAt(i++));
+        bits = (h1 << 18) | (h2 << 12) | (h3 << 6) | h4;
+        o1 = (bits >> 16) & 0xff;
+        o2 = (bits >> 8) & 0xff;
+        o3 = bits & 0xff;
+        if (h3 === 64) {
+            tmp_arr[ac++] = String.fromCharCode(o1);
+        } else if (h4 === 64) {
+            tmp_arr[ac++] = String.fromCharCode(o1, o2);
+        } else {
+            tmp_arr[ac++] = String.fromCharCode(o1, o2, o3);
+        }
+    } while (i < data.length);
+    dec = tmp_arr.join("");
+    dec = utf8_decode(dec);
+    return dec;
+};
+
+// 压缩css代码
+/*
+ * @author WYK
+ * @date 2020-04-22 17:16:53
+ * @param {String}      s       css代码
+ * @return {}
+ */
+const compressCss = function (s) {
+    //压缩代码
+    s = s.replace(/\/\*(.|\n)*?\*\//g, ""); //删除注释
+    s = s.replace(/\s*([\{\}\:\;\,])\s*/g, "$1");
+    s = s.replace(/\,[\s\.\#\d]*\{/g, "{"); //容错处理
+    s = s.replace(/;\s*;/g, ";"); //清除连续分号
+    s = s.match(/^\s*(\S+(\s+\S+)*)\s*$/); //去掉首尾空白
+    return s == null ? "" : s[1];
+};
+
+// 检测url连接是否有效
+/*
+ * 注：仅IE有效
+ * @author WYK
+ * @date 2020-04-22 17:20:46
+ * @param {String}      URL     检测的连接
+ * @return {Boolean}
+ */
+function getUrlState(URL) {
+    var xmlhttp = new ActiveXObject("microsoft.xmlhttp");
+    xmlhttp.Open("GET", URL, false);
+    try {
+        xmlhttp.Send();
+    } catch (e) {
+    } finally {
+        var result = xmlhttp.responseText;
+        if (result) {
+            if (xmlhttp.Status == 200) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
 }
 
+// 性能检测
+const power = function () {
+    setTimeout(function () {
+        let t = performance.timing
+        console.log('DNS查询耗时 ：' + (t.domainLookupEnd - t.domainLookupStart).toFixed(0))
+        console.log('TCP链接耗时 ：' + (t.connectEnd - t.connectStart).toFixed(0))
+        console.log('request请求耗时 ：' + (t.responseEnd - t.responseStart).toFixed(0))
+        console.log('解析dom树耗时 ：' + (t.domComplete - t.domInteractive).toFixed(0))
+        console.log('白屏时间 ：' + (t.responseStart - t.navigationStart).toFixed(0))
+        console.log('domready时间 ：' + (t.domContentLoadedEventEnd - t.navigationStart).toFixed(0))
+        console.log('onload时间 ：' + (t.loadEventEnd - t.navigationStart).toFixed(0))
 
+        if (t = performance.memory) {
+            console.log('js内存使用占比 ：' + (t.usedJSHeapSize / t.totalJSHeapSize * 100).toFixed(2) + '%')
+        }
+    })
+};
 
 export {
     test,
@@ -539,7 +828,7 @@ export {
     throttle,
     removeRepeat,
     getURL,
-    deepCopy,
+    deepClone,
     breakArr,
     saveS,
     getS,
@@ -554,5 +843,16 @@ export {
     repeat,
     toFullScreen,
     exitFullscreen,
-
+    combine,
+    scrollTo,
+    getScroll,
+    clickCopy,
+    stripHTMLTags,
+    hideTag,
+    strToBase64,
+    imgToBase64,
+    base64Decode,
+    compressCss,
+    getUrlState,
+    power,
 }

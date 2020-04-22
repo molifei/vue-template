@@ -108,7 +108,7 @@ const getDate = (value, format = "YYYY-MM-DD hh:mm:ss", cn = true) => {
         })
     }
 
-    cn ? chinese() : ""
+    cn ? chinese() : "";
     return moment().format(format);
 }
 
@@ -123,13 +123,13 @@ const wordLimit = (value, end = 10, start = 0) => {
     // 判断传入的数据类型 如果是数字，转换为字符串，其他的报错
     if (getType(value) === "Number") {
         value += ""
-    }else if(getType(value) === "String"){
+    } else if (getType(value) === "String") {
         return `${value.slice(start, end)}...`
-    }else {
+    } else {
         throw Error("参数类型必为数字或字符串")
     }
 
-}
+};
 
 // 切换大小写字母
 /*
@@ -146,7 +146,7 @@ const wordLimit = (value, end = 10, start = 0) => {
 const getLetter = (value, type = 1) => {
     // console.log(value)
     // 去空格
-    value = value.trim()
+    value = value.trim();
     switch (type) {
         case 1:
             return value.split("").reduce((prev, item, index) => {
@@ -176,7 +176,7 @@ const getLetter = (value, type = 1) => {
                 // 判断大写正则
                 let upReg = /^[A-Z]+$/;
                 // let lowReg = "^[a-z]+$"; //用一个即可
-                upReg.test(item) ? item = item.toLowerCase() : item = item.toUpperCase()
+                upReg.test(item) ? item = item.toLowerCase() : item = item.toUpperCase();
                 return prev + item
             }, "");
         case 5:
@@ -184,7 +184,7 @@ const getLetter = (value, type = 1) => {
                 // 判断大写正则
                 let upReg = /^[A-Z]+$/;
                 // let lowReg = "^[a-z]+$"; //用一个即可
-                upReg.test(item) ? item = item : item = item.toUpperCase()
+                item = upReg.test(item) ? item : item.toUpperCase();
                 return prev + item
             }, "");
         case 6:
@@ -192,11 +192,11 @@ const getLetter = (value, type = 1) => {
                 // 判断大写正则
                 let upReg = /^[A-Z]+$/;
                 // let lowReg = "^[a-z]+$"; //用一个即可
-                upReg.test(item) ? item = item.toLowerCase() : item = item
+                item = upReg.test(item) ? item.toLowerCase() : item;
                 return prev + item
             }, "");
     }
-}
+};
 
 // 手机号码，身份证号码等数字类隐藏
 /*
@@ -211,9 +211,9 @@ const hideNum = (value, start = 0, end = 0) => {
         // value += ""
         value = value.toString()
     }
-    let hide = value.length - start - end
+    let hide = value.length - start - end;
 
-    let str = ""
+    let str = "";
     for (let i = 0; i < hide; i++) {
         str += "*"
     }

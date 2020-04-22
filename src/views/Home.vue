@@ -5,12 +5,15 @@
         <p>{{ msg | wordLimit(9)}}</p>
         <p>{{ msg2 | wordLimit(9)}}</p>
         <p>{{ "" | getDate("lll") }}</p>
-        <p>{{ letter | getLetter(6) }}</p>
+        <p>{{ letter | getLetter(5) }}</p>
         <p>{{ phone | hideNum(3) }}</p>
         <p>{{ idCard | hideNum(2,2) }}</p>
         <div id="dv" ref="dv">
 
         </div>
+
+        <input type="text" v-model="msg">
+        <el-button @click="copy(msg)">点击复制</el-button>
     </div>
 </template>
 
@@ -28,28 +31,40 @@
                 obj: {
                     a: 1,
                     b: 2,
-                    c: {
-                        t: "小明"
+                },
+                obj2: {
+                    c: 3,
+                    d: {
+                        z: "小明"
                     }
                 },
-                obj2: {}
+                obj3: {
+                    e: 5,
+                    f: 6
+                },
+                obj4: {}
             }
         },
-        methods: {},
+        methods: {
+            copy(text) {
+               this.tools.clickCopy(text)
+            }
+        },
         mounted() {
-            this.tool.test()
-            this.obj2 = this.tool.deepCopy(this.obj)
-            this.tool.breakArr(this.arr, 2, 2);
-            this.tool.saveS("obj", this.arr, 2)
-            this.tool.getS("obj")
-            this.tool.getURL("www.baidu.com?name=1");
-            this.$refs.dv.style.backgroundColor=this.tool.getColor(.1)
+            // this.obj2 = this.tools.deepClone(this.obj)
+            this.tools.breakArr(this.arr, 2, 2);
+            this.tools.saveS("obj", this.arr, 2)
+            this.tools.getS("obj")
+            this.tools.getURL("www.baidu.com?name=1");
+            this.$refs.dv.style.backgroundColor = this.tools.getColor(.1)
+            this.obj4 = this.tools.combine(this.obj, this.obj2, this.obj3);
+            // console.log(this.obj4)
         }
     }
 </script>
 
 <style lang="less">
-    #dv{
+    #dv {
         width: 300px;
         height: 300px;
         border: 1px solid #000;

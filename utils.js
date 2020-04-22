@@ -72,6 +72,10 @@ _.exportFile = function($event, targetName, url, method, propsArr, queryParam) {
     });
 };
 
+ /*@description: 
+ *@author: wuxuan
+ *@date: 2020-04-22 16:08:11
+*/
 /**
  * post文件下载
  * @author wuziran (hzwuziran@corp.netease.com)
@@ -467,6 +471,8 @@ _.scrollTo = function(target, speed, cb) {
         }
     }, 16);
 };
+
+
 
 /**
  * 获取css数值字符串中的数值
