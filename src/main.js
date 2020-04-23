@@ -29,7 +29,7 @@ require("es6-promise").polyfill()
 
 // 初始化css
 // pc
-// import "@/assets/css/pc/base.css"
+import "@/assets/css/pc/base.css"
 // 移动
 // import "@/assets/css/mb/base.css"
 
@@ -45,6 +45,15 @@ import * as filter from '@/filters'
 Object.keys(filter).forEach(key => {
     Vue.filter(key, filter[key])
 })
+
+// 图片懒加载
+// 使用本地图片需require()
+import vueLazyLoad from "vue-lazyload"
+Vue.use(vueLazyLoad,{
+    error:require("@/assets/img/error.jpg"),
+    loading:require("@/assets/img/load4.gif")
+})
+
 
 // 是否显示生产模式的消息
 Vue.config.productionTip = false
