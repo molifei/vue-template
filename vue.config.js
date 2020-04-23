@@ -1,11 +1,14 @@
 module.exports = {
     // 基本路径
-    // baseUrl: './',
-    publicPath: "./",
+    publicPath: process.env.NODE_ENV === 'production' ? './' : '/',
     // 输出文件目录
     outputDir: 'output',
     // 静态资源目录
     assetsDir: "assets",
+    // 指定生成的index.html的输出路径
+    indexPath: "index.html",
+    // 静态资源文件名是否包含哈希
+    filenameHashing: true,
     // eslint-loader 是否在保存的时候检查
     lintOnSave: false,
     // use the full build with in-browser compiler?
@@ -23,16 +26,16 @@ module.exports = {
     // 生产环境是否生成 sourceMap 文件
     productionSourceMap: false,
     // css相关配置
-    // css: {
-    //     // 是否使用css分离插件 ExtractTextPlugin
-    //     extract: true,
-    //     // 开启 CSS source maps?
-    //     sourceMap: false,
-    //     // css预设器配置项
-    //     loaderOptions: {},
-    //     // 启用 CSS modules for all css / pre-processor files.
-    //     requireModuleExtension: false
-    // },
+    css: {
+        // 是否使用css分离插件 ExtractTextPlugin
+        // extract: true,
+        // 开启 CSS source maps?
+        sourceMap: false,
+        // css预设器配置项
+        loaderOptions: {},
+        // 启用 CSS modules for all css / pre-processor files.
+        requireModuleExtension: false
+    },
     // use thread-loader for babel & TS in production build
     // enabled by default if the machine has more than 1 cores
     parallel: require('os').cpus().length > 1,
@@ -44,7 +47,7 @@ module.exports = {
     pwa: {},
     // webpack-dev-d - server 相关配置
     devServer: {
-        open:true,
+        open: true,
         host: '127.0.0.1',
         port: 2500,
         https: false,
