@@ -1,5 +1,11 @@
 <template>
     <div class="home">
+
+        <router-link to="/lazy" tag="a">去/lazy</router-link>
+        <br>
+        <router-link to="/edit" tag="a">去/edit</router-link>
+        <br/>
+
         <el-button type="primary">主要按钮</el-button>
         <p>{{ CDATA.NAME }}</p>
         <p>{{ msg | wordLimit(9)}}</p>
@@ -14,7 +20,7 @@
 
         <input type="text" v-model="msg">
         <el-button @click="copy(msg)">点击复制</el-button>
-        <banner></banner>
+<!--        <banner></banner>-->
     </div>
 </template>
 

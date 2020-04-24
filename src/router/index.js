@@ -14,11 +14,21 @@ const routes = [
         path: '/lazy',
         name: 'Lazy',
         component: () => import('../views/Lazy/Lazy.vue')
-    }
+    },
+    {
+        path: '/edit',
+        name: 'Edit',
+        component: () => import('../views/Edit/Edit.vue')
+    },
+    {
+        path: '/chart',
+        name: 'Chart',
+        component: () => import('../views/Chart/Chart.vue')
+    },
 ]
 
 const router = new VueRouter({
-    mode: 'history',
+    mode: 'hash',
     base: process.env.BASE_URL,
     routes
 })

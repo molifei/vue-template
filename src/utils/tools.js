@@ -197,7 +197,7 @@ const deepClone = function (data) {
         // console.log(data[key])
         // 判断每一项是否还是数组或者对象
         if (data[key === "object"]) {
-            deepCopy(data[key])
+            deepClone(data[key])
         } else {
             target[key] = data[key]
         }

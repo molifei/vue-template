@@ -1,0 +1,13 @@
+#nprogress {
+  height: 10px;
+}
+#nprogress .bar {
+  z-index: 15031;
+}
+#nprogress .spinner {
+  z-index: 15031;
+}
+#nprogress .bar {
+  background: red !important;
+}
+/*# sourceMappingURL=nprogress.css.map */
