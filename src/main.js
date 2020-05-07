@@ -66,6 +66,12 @@ Vue.use(VueQuillEditor)
 // 是否显示生产模式的消息
 Vue.config.productionTip = false
 
+
+console.log(
+    process.env.NODE_ENV
+)
+console.log(process.env.VUE_APP_BASE_URL)
+
 new Vue({
     router,
     store,

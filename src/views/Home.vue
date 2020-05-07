@@ -26,6 +26,7 @@
 
 <script>
     import banner from "@/components/swipe/swipe";
+    import {getA,getB} from "../api2"
 
     export default {
         name: "Home",
@@ -57,6 +58,14 @@
         methods: {
             copy(text) {
                 this.tools.clickCopy(text)
+            },
+            async getGet(){
+                const res = await getA()
+                console.log(res)
+            },
+            async getPost(){
+                const res = await getB()
+                console.log(res)
             }
         },
         mounted() {
@@ -68,6 +77,8 @@
             this.$refs.dv.style.backgroundColor = this.tools.getColor(.1)
             this.obj4 = this.tools.combine(this.obj, this.obj2, this.obj3);
             // console.log(this.obj4)
+            this.getGet()
+            this.getPost()
         },
         components: {
             banner
