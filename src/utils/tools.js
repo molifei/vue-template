@@ -832,6 +832,8 @@ export {
     breakArr,
     saveS,
     getS,
+    delS,
+    delA,
     entities,
     isIos,
     isPC,

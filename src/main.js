@@ -32,6 +32,9 @@ import "@/assets/css/pc/base.css"
 // 移动
 // import "@/assets/css/mb/base.css"
 
+// 引入animate.css
+import "animate.css/animate.css"
+
 // 按需加载element-UI
 import {Button, Message, Notification} from "element-ui"
 
