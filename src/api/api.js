@@ -40,8 +40,6 @@ function ajax(url, data = {}, type = "get") {
             Message.error("请求异常，请刷新重试")
         })
     }));
-
-
 }
 
 export default ajax

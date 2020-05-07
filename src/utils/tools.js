@@ -351,7 +351,7 @@ const saveS = function (key, value, type = 1) {
 // 取
 const getS = function (key, type = 1) {
     let store = sType(type)
-    return JSON.parse(store.getItem(key))
+    return store.getItem(key)
 };
 
 // 删

@@ -34,7 +34,7 @@ module.exports = {
         // css预设器配置项
         loaderOptions: {},
         // 启用 CSS modules for all css / pre-processor files.
-        requireModuleExtension: false
+        requireModuleExtension: true // 此项设置false会使ele按需加载失败
     },
     // use thread-loader for babel & TS in production build
     // enabled by default if the machine has more than 1 cores
@@ -51,7 +51,8 @@ module.exports = {
         host: '127.0.0.1',
         port: 2500,
         https: false,
-        hotOnly: false,
+        hot: true, // 是否采取热更新
+        hotOnly: true, // 是否只采用热更新方式，禁用模块替换
         // proxy: 'http://127.0.0.1:3000', // 设置代理
         before: app => {
         }

@@ -3,6 +3,18 @@ import VueRouter from 'vue-router'
 
 Vue.use(VueRouter)
 
+// 引入进度条
+import NProgress from "nprogress"
+import "nprogress/nprogress.css"
+
+NProgress.configure({
+    easing: 'ease',  // 动画方式
+    speed: 500,  // 递增进度条的速度
+    showSpinner: false, // 是否显示加载ico
+    trickleSpeed: 200, // 自动递增间隔
+    minimum: 0.3 // 初始化时的最小百分比
+})
+
 const routes = [
 
     {
@@ -28,9 +40,20 @@ const routes = [
 ]
 
 const router = new VueRouter({
-    mode: 'hash',
+    mode: 'history',
     base: process.env.BASE_URL,
     routes
 })
+
+router.beforeEach((to, from, next) => {
+    if (to.path !== from.path) {
+        NProgress.start();
+    }
+    next();
+});
+
+router.afterEach(() => {
+    NProgress.done();
+});
 
 export default router

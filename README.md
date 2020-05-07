@@ -28,3 +28,8 @@ npm run build
 ```
 127.0.0.1:2500
 ```
+
+问题
+-
+* elementUI按需加载失效（全加载样式也无效）：vue.config.js的css字段中的requireModuleExtension属性设置为false，应为true
+
