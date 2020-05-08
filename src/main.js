@@ -72,6 +72,10 @@ console.log(
 )
 console.log(process.env.VUE_APP_BASE_URL)
 
+import api from "./api3/api/index"
+
+Vue.prototype.$api = api
+
 new Vue({
     router,
     store,

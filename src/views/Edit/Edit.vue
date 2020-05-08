@@ -11,7 +11,7 @@
         <el-button type="primary" v-on:click="saveHtml">保存</el-button>
         <transition name="plus-icon">
             <div v-if="flag" class="notify">
-                <p>检测到有输入过的内容</p>
+                <p>检测到有输入过的内容，是否填充</p>
                 <a href="javascript:void(0);" @click="toFill(false)">不</a>
                 <a href="javascript:void(0);" @click="toFill(true)">好</a>
             </div>
@@ -103,8 +103,8 @@
         position: fixed;
         bottom: 20px;
         right: 20px;
-        width: 230px;
-        padding: 10px;
+        width: 280px;
+        padding: 20px;
         background-color: #eee;
         border-radius: 10px;
 

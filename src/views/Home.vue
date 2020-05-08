@@ -17,6 +17,7 @@
         <div id="dv" ref="dv">
 
         </div>
+        <img src="@/assets/img/xb.jpg" alt="">
 
         <input type="text" v-model="msg">
         <el-button @click="copy(msg)">点击复制</el-button>

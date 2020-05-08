@@ -60,5 +60,12 @@ module.exports = {
     // 第三方插件配置
     pluginOptions: {
         // ...
+    },
+    chainWebpack: config => {
+        config.module
+            .rule('images')
+            .use('url-loader')
+            .loader('url-loader')
+            .tap(options => Object.assign(options, {limit: 2000})) // 小于2k的图片会转化为base64
     }
 }

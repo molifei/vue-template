@@ -37,6 +37,11 @@ const routes = [
         name: 'Chart',
         component: () => import('../views/Chart/Chart.vue')
     },
+    {
+        path: '/music',
+        name: 'Music',
+        component: () => import('../views/Music/Music.vue')
+    },
 ]
 
 const router = new VueRouter({

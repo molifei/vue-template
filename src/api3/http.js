@@ -7,8 +7,6 @@
 
 // 引入axios文件
 import axios from "axios"
-// QS  序列化参数
-import QS from "qs"
 // vuex
 import store from "../store/index"
 import Vue from "vue"
@@ -99,47 +97,19 @@ ajax.interceptors.response.use(
         const {response} = error
 
         if (response) {
-           // 当请求发出，但是状态码不是 2XX
-            errorHandle(response.status,response.data.message)
+            // 当请求发出，但是状态码不是 2XX
+            errorHandle(response.status, response.data.message)
             return Promise.reject(response);
-        }else {
-            
+        } else {
+            // 断网
+            if (!window.navigator.onLine) {
+                _this.$message.error("断网了哦")
+            } else {
+                return Promise.reject(error)
+            }
         }
-
         return Promise.reject(error.response)
     }
 )
 
-/*
- * get请求
- * @param {String} url 请求地址
- * @param {Object} params 请求参数
- * @return {Promise}
- */
-export function get(url, params) {
-    return new Promise((resolve, reject) => {
-        axios.get(url, {
-            params: params
-        })
-            .then(res => {
-                resolve(res)
-            })
-            .catch(err => reject(err))
-    })
-}
-
-/*
- * post请求
- * @param {String} url 请求地址
- * @param {Object} params 请求参数
- * @return {Promise}
- */
-export function post(url, params) {
-    return new Promise((resolve, reject) => {
-        axios.post(url, QS.stringify(params))
-            .then(res => {
-                resolve(res)
-            })
-            .catch(err => reject(err))
-    })
-}
+export default ajax
