@@ -25,7 +25,7 @@
             getData() {
                 let _this = this
                 // 创建
-                console.log(createSocket());
+                createSocket()
                 // 发送数据
                 sendWSPush(1111)
 

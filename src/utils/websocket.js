@@ -76,5 +76,5 @@ export function sendPing() {
     Socket.send('ping')
     setIntervalWebsocketPush = setInterval(() => {
         Socket.send('ping')
-    }, 5000)
+    }, 3000)
 }
