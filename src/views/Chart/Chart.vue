@@ -63,7 +63,7 @@
                         }
                     ]
                 })
-            }
+            },
         },
         mounted() {
             this.drawPie('chart')

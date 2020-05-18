@@ -16,7 +16,20 @@ module.exports = {
     // compiler: false,
     // webpack配置
     // see https://github.com/vuejs/vue-cli/blob/dev/docs/webpack.md
-    chainWebpack: () => {
+    chainWebpack: config => { // 覆盖webpack配置
+        config.module
+            .rule('images')
+            .use('url-loader')
+            .loader('url-loader')
+            .tap(options => Object.assign(options, {limit: 2000})) // 小于2k的图片会转化为base64
+
+        config
+            .plugin('html')
+            .tap(args => {
+                args[0].title = '你想设置的title名字'
+                return args
+            })
+
     },
     configureWebpack: () => {
     },
@@ -61,11 +74,4 @@ module.exports = {
     pluginOptions: {
         // ...
     },
-    chainWebpack: config => {
-        config.module
-            .rule('images')
-            .use('url-loader')
-            .loader('url-loader')
-            .tap(options => Object.assign(options, {limit: 2000})) // 小于2k的图片会转化为base64
-    }
 }

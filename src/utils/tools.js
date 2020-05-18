@@ -460,10 +460,11 @@ const browserType = function () {
 };
 
 // 获取一个指定范围的随机数  来自MDN
+//含最大值，含最小值
 const getRandom = function (min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min + 1)) + min; //含最大值，含最小值
+    return Math.floor(Math.random() * (max - min + 1)) + min;
 };
 
 // 获取一个随机颜色值 rgb

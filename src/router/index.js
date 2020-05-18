@@ -42,6 +42,11 @@ const routes = [
         name: 'Music',
         component: () => import('../views/Music/Music.vue')
     },
+    {
+        path: '/ws',
+        name: 'Ws',
+        component: () => import('../views/WebSocket/WebSocket.vue')
+    }
 ]
 
 const router = new VueRouter({
