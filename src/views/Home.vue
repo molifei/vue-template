@@ -71,12 +71,12 @@
         },
         mounted() {
             // this.obj2 = this.tools.deepClone(this.obj)
-            this.tools.breakArr(this.arr, 2, 2);
-            this.tools.saveS("obj", this.arr, 2)
-            this.tools.getS("obj")
-            this.tools.getURL("www.baidu.com?name=1");
-            this.$refs.dv.style.backgroundColor = this.tools.getColor(.1)
-            this.obj4 = this.tools.combine(this.obj, this.obj2, this.obj3);
+            this.$tools.breakArr(this.arr, 2, 2);
+            this.$tools.saveS("obj", this.arr, 2)
+            this.$tools.getS("obj")
+            this.$tools.getURL("www.baidu.com?name=1");
+            this.$refs.dv.style.backgroundColor = this.$tools.getColor(.1)
+            this.obj4 = this.$tools.combine(this.obj, this.obj2, this.obj3);
             // console.log(this.obj4)
             this.getGet()
             this.getPost()

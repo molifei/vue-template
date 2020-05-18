@@ -10,7 +10,7 @@ Vue.prototype.CDATA = CDATA
 // 引入工具函数
 import * as tools from "./utils/tools.js"
 
-Vue.prototype.tools = tools
+Vue.prototype.$tools = tools
 
 // 正则
 import * as reg from "./utils/reg"

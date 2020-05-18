@@ -1,5 +1,7 @@
 <template>
-
+    <div>
+        {{ msg }}
+    </div>
 </template>
 
 <script>
@@ -12,8 +14,16 @@
                 msg: ""
             }
         },
+        watch: {
+            msg(newVal, oldVal) {
+                if (newVal !== oldVal) {
+                    this.$message.success(`原来是${oldVal}，现在是${newVal}`)
+                }
+            }
+        },
         methods: {
             getData() {
+                let _this = this
                 // 创建
                 console.log(createSocket());
                 // 发送数据
@@ -21,8 +31,9 @@
 
                 // 监听相应数据
                 const getDataFn = function (e) {
-                    console.log(e)
+                    _this.msg = e.detail.data.data
                 }
+                window.addEventListener('onmessageWS', getDataFn)
             }
         },
         mounted() {
