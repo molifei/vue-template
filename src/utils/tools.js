@@ -816,11 +816,25 @@ const power = function () {
         console.log('domready时间 ：' + (t.domContentLoadedEventEnd - t.navigationStart).toFixed(0))
         console.log('onload时间 ：' + (t.loadEventEnd - t.navigationStart).toFixed(0))
 
-        if (t = performance.memory) {
+        if (t === performance.memory) {
             console.log('js内存使用占比 ：' + (t.usedJSHeapSize / t.totalJSHeapSize * 100).toFixed(2) + '%')
         }
     })
 };
+
+// 传入一个对象数组和一个数组，检测数组中的值是否与对象数组中的某个对象的id相同，相同则撇弃
+/*
+ * @author WYK
+ * @date 2020-05-20 14:52:41
+ * @param {Array}   objArr  对象数组
+ * @param {Array}   arr     数组
+ * @return {Array}  筛选完毕的数组
+ */
+function removeArr(objArr, arr) {
+    return objArr.filter(item => {
+        return arr.indexOf(item.id) === -1
+    })
+}
 
 export {
     test,
