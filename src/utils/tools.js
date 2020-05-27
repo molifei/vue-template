@@ -121,11 +121,6 @@ const throttle = function (func, wait, options) {
 //     trailing: false
 // });
 
-/*@description:
-*@author: wuxuan
-*@date: 2020-04-22 16:08:28
-*/
-
 // 数组去重
 /*
  * @author WYK
@@ -334,7 +329,7 @@ const saveS = function (key, value, type = 1) {
     isSupport(type);
 
     // 判断类型  如果不是字符类型，转换为字符串
-    // if (getType(value) !== "String") value = JSON.stringify(value);// 会自动转换
+    if (getType(value) !== "String") value = JSON.stringify(value);
 
     let store = sType(type)
 
@@ -351,7 +346,7 @@ const saveS = function (key, value, type = 1) {
 // 取
 const getS = function (key, type = 1) {
     let store = sType(type)
-    return store.getItem(key)
+    return JSON.parse(store.getItem(key))
 };
 
 // 删
