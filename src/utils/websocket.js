@@ -5,7 +5,9 @@
  */
 
 // url
-const WSS_URL = "ws://127.0.0.1:2600"
+// const WSS_URL = "ws://127.0.0.1:2600"
+const WSS_URL = "ws://192.168.10.14:7000/websocket/read"
+// const WSS_URL = "ws://121.40.165.18:8800"
 let Socket;
 let setIntervalWebsocketPush = null
 
