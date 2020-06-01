@@ -840,30 +840,30 @@ function removeArr(objArr, arr) {
  * @return {Array}  合并之后的对象数组
  */
 function alikeMerge(data, str) {
-  // 存储数组：存储已经遍历过的id
-  let tempArr = []
-  // 返回数组：将要返回的数组
-  let returnArr = []
-  // 循环当前数组
-  for (let i = 0; i < data.length; i++) {
-    // 如果存储数组中没有和当前循环项一样的id
-    if (tempArr.indexOf(data[i][str]) === -1) {
-      // 将对象添加进返回数组
-      returnArr.push(data[i])
-      // 此项已经处理过，将id存入存储数组
-      tempArr.push(data[i][str])
-    } else {
-      // 获取已经遍历过id的项在存储数组中的位置
-      let _index = returnArr.findIndex(item => {
-        return data[i][str] === item[str]
-      })
-      // 合并返回数组中的这一项和当前循环项
-      let tar = Object.assign(returnArr[_index], data[i])
-      // 在返回数组的替换进合并完毕的数组
-      returnArr.splice(_index, 1, tar)
+    // 存储数组：存储已经遍历过的id
+    let tempArr = []
+    // 返回数组：将要返回的数组
+    let returnArr = []
+    // 循环当前数组
+    for (let i = 0; i < data.length; i++) {
+        // 如果存储数组中没有和当前循环项一样的id
+        if (tempArr.indexOf(data[i][str]) === -1) {
+            // 将对象添加进返回数组
+            returnArr.push(data[i])
+            // 此项已经处理过，将id存入存储数组
+            tempArr.push(data[i][str])
+        } else {
+            // 获取已经遍历过id的项在存储数组中的位置
+            let _index = returnArr.findIndex(item => {
+                return data[i][str] === item[str]
+            })
+            // 合并返回数组中的这一项和当前循环项
+            let tar = Object.assign(returnArr[_index], data[i])
+            // 在返回数组的替换进合并完毕的数组
+            returnArr.splice(_index, 1, tar)
+        }
     }
-  }
-  return returnArr
+    return returnArr
 }
 
 export {

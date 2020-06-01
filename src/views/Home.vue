@@ -70,6 +70,7 @@
             }
         },
         mounted() {
+            console.log("清除")
             // this.obj2 = this.tools.deepClone(this.obj)
             this.$tools.breakArr(this.arr, 2, 2);
             this.$tools.saveS("obj", this.arr, 2)

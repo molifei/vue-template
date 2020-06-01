@@ -5,10 +5,8 @@
  */
 
 // 音乐模块
-import music from "./music"
-import dj from "./dj"
+import music from "../modules/music"
 
 export default {
     music,
-    dj
 }
