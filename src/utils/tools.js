@@ -866,6 +866,45 @@ function alikeMerge(data, str) {
     return returnArr
 }
 
+// 根据传入的父id拼接树数据
+/*
+ * @author WYK
+ * @date 2020-06-08 17:58:33
+ * @param {Array} data 需要拼接的数据
+ * @param {String} son 子项的判断字段
+ * @param {String} par 父项的判断字段
+ * @return {Array} 返回拼接完毕的数组
+ */
+function splitTree(data,son,par) {
+  // 需要返回拼接完毕的数组
+  let results = [];
+
+  // 存储以子项判断字段为索引的对象
+  let map = {};
+  data.forEach(function (mapItem) {
+    map[mapItem[son]] = mapItem;
+  });
+  // console.log(map);
+
+  for (let i = 0; i < data.length; i++) {
+    // 在map中取出当前项的父项
+    let parent = map[data[i][par]];
+
+    // console.log(parent)
+
+    // 如果父项存在，则在父项的children数组中添加进当前项
+    if (parent) {
+      (parent.children || (parent.children = [])).push(data[i]);
+    }
+    // 否则直接在数组中添加当前项
+    else {
+      results.push(data[i]);
+    }
+  }
+  return results;
+}
+
+
 export {
   test,
   getType,
@@ -903,4 +942,5 @@ export {
   getUrlState,
   power,
   alikeMerge,
+  splitTree,
 }
