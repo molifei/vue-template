@@ -1,0 +1,27 @@
+/* webkit浏览器 */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 10px;
+}
+::-webkit-scrollbar-track-piece {
+  background-color: rgba(0, 0, 0, 0.2);
+  -webkit-border-radius: 6px;
+}
+::-webkit-scrollbar-thumb:vertical {
+  height: 1px;
+  background-color: rgba(125, 125, 125, 0.7);
+  -webkit-border-radius: 6px;
+}
+::-webkit-scrollbar-thumb:horizontal {
+  width: 1px;
+  background-color: rgba(125, 125, 125, 0.7);
+  -webkit-border-radius: 6px;
+}
+::-webkit-scrollbar {
+  display: none;
+}
+/*overflow-y: scroll;*/
+/*scrollbar-color: transparent transparent;*/
+/*scrollbar-track-color: transparent;*/
+/*-ms-scrollbar-track-color: transparent;*/
+/*# sourceMappingURL=scrollBar.css.map */

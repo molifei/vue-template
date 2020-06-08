@@ -109,7 +109,7 @@ const getDate = (value, format = "YYYY-MM-DD hh:mm:ss", cn = true) => {
     }
 
     cn ? chinese() : "";
-    return moment().format(format);
+    return moment(value).format(format);
 }
 
 // 字数过滤
