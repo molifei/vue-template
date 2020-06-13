@@ -5,15 +5,18 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "dll": "webpack -p --progress --config ./webpack.dll.conf.js"
+    "dll": "webpack -p --progress --config ./webpack.dll.conf.js",
+    "server": "nodemon ./server/app.js"
   },
   "dependencies": {
     "animate.css": "^3.7.2",
     "axios": "^0.19.2",
+    "body-parser": "^1.19.0",
     "core-js": "^3.6.4",
     "echarts": "^4.7.0",
     "element-ui": "^2.13.1",
     "es6-promise": "^4.2.8",
+    "express": "^4.17.1",
     "lodash": "^4.17.15",
     "moment": "^2.24.0",
     "nprogress": "^0.2.0",

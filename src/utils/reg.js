@@ -40,6 +40,9 @@ let regEnglishName = /(^[a-zA-Z]{1}[a-zA-Z\s]{0,20}[a-zA-Z]{1}$)/;
 // 匹配数字
 let regNum = /^\d{1,}$/
 
+// 匹配字母加数字
+let regLetterAndNumber = /^[A-Za-z0-9]+$/
+
 export {
   regEmail,
   regPhone,
@@ -55,4 +58,5 @@ export {
   regEnglishName,
   regPhoneEasy,
   regNum,
+  regLetterAndNumber,
 }

@@ -35,6 +35,9 @@ import "@/assets/css/pc/base.css"
 // 引入animate.css
 import "animate.css/animate.css"
 
+// 滚动条样式
+import "@/assets/css/scrollBar.less"
+
 // 按需加载element-UI
 import {Button, Message, Notification} from "element-ui"
 

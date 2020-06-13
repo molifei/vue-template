@@ -1,27 +1,30 @@
 /* webkit浏览器 */
 ::-webkit-scrollbar {
-    width: 5px;
-    height: 10px;
+    width: 4px; // 竖向滚动条宽度
+    height: 0; // 横向滚动条高度
 }
+
 ::-webkit-scrollbar-track-piece {
-    background-color: rgba(0, 0, 0, 0.2);
-    -webkit-border-radius: 6px;
+    background-color: transparent;
+    //-webkit-border-radius: 6px;
 }
 
 ::-webkit-scrollbar-thumb:vertical {
     height: 1px;
-    background-color: rgba(125, 125, 125, 0.7);
-    -webkit-border-radius: 6px;
+    background-color: rgba(144,147,153,.3);
+    //-webkit-border-radius: 6px;
 }
 
 ::-webkit-scrollbar-thumb:horizontal {
     width: 1px;
-    background-color: rgba(125, 125, 125, 0.7);
-    -webkit-border-radius: 6px;
+    background-color: rgba(144,147,153,.3);
+    //-webkit-border-radius: 6px;
 }
 
 // webkit隐藏横向滚动条
-::-webkit-scrollbar {display:none}
+::-webkit-scrollbar {
+    //display: none
+}
 
 
 /*overflow-y: scroll;*/

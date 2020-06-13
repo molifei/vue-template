@@ -840,30 +840,30 @@ function removeArr(objArr, arr) {
  * @return {Array}  合并之后的对象数组
  */
 function alikeMerge(data, str) {
-    // 存储数组：存储已经遍历过的id
-    let tempArr = []
-    // 返回数组：将要返回的数组
-    let returnArr = []
-    // 循环当前数组
-    for (let i = 0; i < data.length; i++) {
-        // 如果存储数组中没有和当前循环项一样的id
-        if (tempArr.indexOf(data[i][str]) === -1) {
-            // 将对象添加进返回数组
-            returnArr.push(data[i])
-            // 此项已经处理过，将id存入存储数组
-            tempArr.push(data[i][str])
-        } else {
-            // 获取已经遍历过id的项在存储数组中的位置
-            let _index = returnArr.findIndex(item => {
-                return data[i][str] === item[str]
-            })
-            // 合并返回数组中的这一项和当前循环项
-            let tar = Object.assign(returnArr[_index], data[i])
-            // 在返回数组的替换进合并完毕的数组
-            returnArr.splice(_index, 1, tar)
-        }
+  // 存储数组：存储已经遍历过的id
+  let tempArr = []
+  // 返回数组：将要返回的数组
+  let returnArr = []
+  // 循环当前数组
+  for (let i = 0; i < data.length; i++) {
+    // 如果存储数组中没有和当前循环项一样的id
+    if (tempArr.indexOf(data[i][str]) === -1) {
+      // 将对象添加进返回数组
+      returnArr.push(data[i])
+      // 此项已经处理过，将id存入存储数组
+      tempArr.push(data[i][str])
+    } else {
+      // 获取已经遍历过id的项在存储数组中的位置
+      let _index = returnArr.findIndex(item => {
+        return data[i][str] === item[str]
+      })
+      // 合并返回数组中的这一项和当前循环项
+      let tar = Object.assign(returnArr[_index], data[i])
+      // 在返回数组的替换进合并完毕的数组
+      returnArr.splice(_index, 1, tar)
     }
-    return returnArr
+  }
+  return returnArr
 }
 
 // 根据传入的父id拼接树数据
@@ -875,7 +875,7 @@ function alikeMerge(data, str) {
  * @param {String} par 父项的判断字段
  * @return {Array} 返回拼接完毕的数组
  */
-function splitTree(data,son,par) {
+function splitTree(data, son, par) {
   // 需要返回拼接完毕的数组
   let results = [];
 
@@ -902,6 +902,37 @@ function splitTree(data,son,par) {
     }
   }
   return results;
+}
+
+// 生成一个随机的汉字
+/*
+ * @author WYK
+ * @date 2020-06-13 14:38:57
+ * @param {}
+ * @return {}
+ */
+function getOneChinese() {
+  let _rsl = "";
+  let _randomUniCode = Math.floor(Math.random() * (40870 - 19968) + 19968).toString(16);
+  eval("_rsl=" + '"\\u' + _randomUniCode + '"');
+  return _rsl;
+}
+
+// 获取指定长度范围的随机汉字段落
+/*
+ * @author WYK
+ * @date 2020-06-13 14:49:03
+ * @param {Number}  min  最少几位
+ * @param {Number}  max  最多几位
+ * @return {}
+ */
+function getRandomChinese(min, max) {
+  let arr = new Array(getRandom(min, max)).fill(1)
+  let str = ""
+  arr.map(item => {
+    str += getRandomChinese()
+  })
+  return str
 }
 
 
@@ -943,4 +974,6 @@ export {
   power,
   alikeMerge,
   splitTree,
+  getOneChinese,
+  getRandomChinese
 }
