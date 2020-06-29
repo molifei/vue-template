@@ -8,6 +8,9 @@
 </template>
 
 <style scoped lang="less">
+  p{
+    font-size: .18rem;
+  }
   .slide-enter-active, .slide-leave-active {
     transition: all .5s ease-in-out;
   }

@@ -346,7 +346,15 @@ const saveS = function (key, value, type = 1) {
 // 取
 const getS = function (key, type = 1) {
   let store = sType(type)
-  return JSON.parse(store.getItem(key))
+  try {
+    return JSON.parse(store.getItem(key))
+  } catch (e) {
+    // 解析非json形式字符串会报错，所以捕捉错误，判断是否是此类型，是则直接返回值
+    let err = e + ""
+    if (err.includes("JSON at position 0")) {
+      return store.getItem(key)
+    }
+  }
 };
 
 // 删

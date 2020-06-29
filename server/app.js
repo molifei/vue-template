@@ -18,7 +18,7 @@ app.use(function (req, res, next) {
 })
 
 
-app.get("/test", function (req, res) {
+app.get("/", function (req, res) {
   let data = JSON.stringify({
     code: 200,
     data: {

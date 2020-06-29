@@ -25,6 +25,8 @@ Vue.prototype._ = _
 // 引入es6-promise，解决IE不支持的问题
 require("es6-promise").polyfill()
 
+// rem
+import "./utils/rem"
 
 // 初始化css
 // pc
@@ -39,9 +41,11 @@ import "animate.css/animate.css"
 import "@/assets/css/scrollBar.less"
 
 // 按需加载element-UI
-import {Button, Message, Notification} from "element-ui"
+import {Button, Message, Notification, Table, TableColumn,} from "element-ui"
 
 Vue.use(Button)
+Vue.use(Table)
+Vue.use(TableColumn)
 Vue.prototype.$message = Message
 Vue.prototype.$notify = Notification;
 
@@ -49,7 +53,7 @@ Vue.prototype.$notify = Notification;
 import * as filter from '@/filters'
 // 导出一个对象，循环注册在vue上
 Object.keys(filter).forEach(key => {
-    Vue.filter(key, filter[key])
+  Vue.filter(key, filter[key])
 })
 
 // 图片懒加载
@@ -57,8 +61,8 @@ Object.keys(filter).forEach(key => {
 import vueLazyLoad from "vue-lazyload"
 
 Vue.use(vueLazyLoad, {
-    error: require("@/assets/img/error.jpg"),
-    loading: require("@/assets/img/load4.gif")
+  error: require("@/assets/img/error.jpg"),
+  loading: require("@/assets/img/load4.gif")
 })
 
 // vue-quill-editor富文本编辑器
@@ -71,12 +75,13 @@ Vue.config.productionTip = false
 
 
 console.log(
-    // process.env.NODE_ENV
+  // process.env.NODE_ENV
 )
 // console.log(process.env.VUE_APP_BASE_URL)
 
 // 请求文件
 import api from "./api3/api/index"
+
 Vue.prototype.$api = api
 
 // websocket
@@ -113,9 +118,9 @@ import VueNativeSock from 'vue-native-websocket'
 // });
 
 new Vue({
-    router,
-    store,
-    render: h => h(App)
+  router,
+  store,
+  render: h => h(App)
 }).$mount('#app')
 
 //  ┏┓　　　┏┓
