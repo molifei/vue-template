@@ -787,7 +787,7 @@ const compressCss = function (s) {
  * @param {String}      URL     检测的连接
  * @return {Boolean}
  */
-function getUrlState(URL) {
+const getUrlState = (URL) => {
   var xmlhttp = new ActiveXObject("microsoft.xmlhttp");
   xmlhttp.Open("GET", URL, false);
   try {
@@ -796,11 +796,7 @@ function getUrlState(URL) {
   } finally {
     var result = xmlhttp.responseText;
     if (result) {
-      if (xmlhttp.Status == 200) {
-        return true;
-      } else {
-        return false;
-      }
+      return xmlhttp.Status === 200;
     } else {
       return false;
     }
@@ -833,7 +829,7 @@ const power = function () {
  * @param {Array}   arr     数组
  * @return {Array}  筛选完毕的数组
  */
-function removeArr(objArr, arr) {
+const removeArr = (objArr, arr) => {
   return objArr.filter(item => {
     return arr.indexOf(item.id) === -1
   })
@@ -847,7 +843,7 @@ function removeArr(objArr, arr) {
  * @param {String}   str     关键词，有相同内容的属性
  * @return {Array}  合并之后的对象数组
  */
-function alikeMerge(data, str) {
+const alikeMerge = (data, str) => {
   // 存储数组：存储已经遍历过的id
   let tempArr = []
   // 返回数组：将要返回的数组
@@ -883,7 +879,7 @@ function alikeMerge(data, str) {
  * @param {String} par 父项的判断字段
  * @return {Array} 返回拼接完毕的数组
  */
-function splitTree(data, son, par) {
+const splitTree = (data, son, par) => {
   // 需要返回拼接完毕的数组
   let results = [];
 
@@ -919,7 +915,7 @@ function splitTree(data, son, par) {
  * @param {}
  * @return {}
  */
-function getOneChinese() {
+const getOneChinese = () => {
   let _rsl = "";
   let _randomUniCode = Math.floor(Math.random() * (40870 - 19968) + 19968).toString(16);
   eval("_rsl=" + '"\\u' + _randomUniCode + '"');
@@ -934,7 +930,7 @@ function getOneChinese() {
  * @param {Number}  max  最多几位
  * @return {}
  */
-function getRandomChinese(min, max) {
+const getRandomChinese = (min, max) => {
   let arr = new Array(getRandom(min, max)).fill(1)
   let str = ""
   arr.map(item => {
@@ -943,6 +939,65 @@ function getRandomChinese(min, max) {
   return str
 }
 
+// 添加cookies
+/*
+ * @author WYK
+ * @date 2020-07-01 12:05:36
+ * @param {String}  name  cookies名字
+ * @param {String}  val  cookies值
+ * @param {Number}  expire  过期时间(天数) 0为不过期
+ * @return {void}
+ */
+const saveCookie = function (name, val, expire) {
+  let cookieString = name + "=" + escape(val)
+
+  // 判断是否设置了过期时间
+  if (expire > 0) {
+    let date = new Date()
+    // 设置以毫秒数为单位的时间
+    date.setTime(date.getTime() + 60 * 60 * 1000 * expire)
+    cookieString = cookieString + ";expires=" + date.toUTCString()
+  }
+  window.document.cookie = cookieString
+}
+
+// 返回指定名称的cookie
+/*
+ * @author WYK
+ * @date 2020-07-01 14:07:41
+ * @param {name}  要取出的cookie名称
+ * @return {String} cookie值
+ */
+const getCookie = function (name) {
+  try {
+    let cookiesList = window.document.cookie.split(";")
+    let a = cookiesList.filter(item => {
+      return item.split("=")[0] === name
+    })
+    return unescape(a[0].split("=")[1])
+  } catch (e) {
+    if (e.includes("undefined")) _this.$message.error("getCookie方法，不能获取这个cookie值，或者不存在该cookie值")
+  }
+}
+
+// 删除某个cookie
+/*
+ * @author WYK
+ * @date 2020-07-01 14:30:47
+ * @param {String / Array}  name  要删除的cookie们，可传一个字符串或者多个[数组形式]
+ * @return {void}
+ */
+const delCookie = function (name) {
+  let date = new Date()
+  date.setTime(date.getTime() - 100000000)
+  if (getType(name) === "String") {
+    window.document.cookie = name + "=v;expires=" + date.toUTCString()
+    return
+  }
+  name.forEach(item => {
+    window.document.cookie = item + "=v;expires=" + date.toUTCString()
+  })
+}
 
 export {
   test,
@@ -983,5 +1038,8 @@ export {
   alikeMerge,
   splitTree,
   getOneChinese,
-  getRandomChinese
+  getRandomChinese,
+  saveCookie,
+  getCookie,
+  delCookie,
 }
