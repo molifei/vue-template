@@ -1,5 +1,8 @@
 <template>
     <ul>
+        <li>
+            <router-view></router-view>
+        </li>
         <li v-for="item in 100" :key="item">
             <img v-lazy="require('@/assets/img/xb.jpg')" :key="item" src="" alt="">
         </li>

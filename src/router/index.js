@@ -24,7 +24,14 @@ const routes = [
   {
     path: '/lazy',
     name: 'Lazy',
-    component: () => import('../views/Lazy/Lazy')
+    component: () => import('../views/Lazy/Lazy'),
+    children:[
+      {
+        path:"/lazy/son",
+        name:"lazy-son",
+        component: () => import('../views/Lazy/LazySon'),
+      }
+    ]
   },
   {
     path: '/edit',
@@ -59,7 +66,8 @@ const routes = [
 ]
 
 const router = new VueRouter({
-  mode: 'hash',
+  // mode: 'hash',
+  mode: 'history',
   base: process.env.BASE_URL,
   routes
 })

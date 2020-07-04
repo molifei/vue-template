@@ -42,7 +42,7 @@ module.exports = {
       }),
       new AddAssetHtmlPlugin({
         // dll文件位置
-        filepath: path.resolve(__dirname, './public/vendor/*.js'),
+        filepath: path.resolve(__dirname, '/public/vendor/*.js'),
         // dll 引用路径
         publicPath: './vendor',
         // dll最终输出的目录

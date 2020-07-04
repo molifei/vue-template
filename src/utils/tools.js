@@ -969,15 +969,28 @@ const saveCookie = function (name, val, expire) {
  * @return {String} cookie值
  */
 const getCookie = function (name) {
-  try {
-    let cookiesList = window.document.cookie.split(";")
-    let a = cookiesList.filter(item => {
-      return item.split("=")[0] === name
-    })
-    return unescape(a[0].split("=")[1])
-  } catch (e) {
-    if (e.includes("undefined")) _this.$message.error("getCookie方法，不能获取这个cookie值，或者不存在该cookie值")
-  }
+  // 1.0
+  // let cookiesList = window.document.cookie.split("; ")
+  // let a = cookiesList.filter(item => {
+  //   return item.split("=")[0] === name
+  // })
+  // console.log(a);
+  // if (!a.length) return null
+  // return unescape(a[0].split("=")[1])
+
+  // 2.0
+  // let arr;
+  // let reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
+  // if (arr = document.cookie.match(reg))
+  //   return unescape(arr[2]);
+  // else
+  //   return null;
+
+  // 3.0
+  let arr = document.cookie.match(new RegExp("(^| )" + name + "=([^;]*)(;|$)"));
+  if (arr != null) return (unescape(arr[2]));
+  return null;
+
 }
 
 // 删除某个cookie
