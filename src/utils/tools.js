@@ -589,7 +589,7 @@ const exitFullscreen = function () {
 // 合并所有传入的对象
 /*
  * @author WYK
- * @date 2020-04-22 14:13:43  
+ * @date 2020-04-22 14:13:43
  * @param {Object}      传入想要合并的对象
  * @return {Object}     返回合并完毕的对象
  */
@@ -675,7 +675,7 @@ const stripHTMLTags = str => str.replace(/<[^>]*>/g, '');
 // 隐藏指定标签
 /*
  * @author WYK
- * @date 2020-04-22 16:50:06  
+ * @date 2020-04-22 16:50:06
  * @param {ArrayLike}   el
  * @return {void}
  */
@@ -1012,6 +1012,37 @@ const delCookie = function (name) {
   })
 }
 
+// 时间格式转换
+/*
+ * @author WYK
+ * @date 2020-07-09 17:59:07
+ * @param {String}  source  原时间
+ * @param {String}  format  需要的格式
+ * @return {String} 转化完毕的时间
+ */
+const formatDate = (source, format) => {
+  source = new Date(source);
+  const o = {
+//     'Y+': source.getFullYear(),
+    'M+': source.getMonth() + 1, // 月份
+    'd+': source.getDate(), // 日
+    'H+': source.getHours(), // 小时
+    'm+': source.getMinutes(), // 分
+    's+': source.getSeconds(), // 秒
+    'q+': Math.floor((source.getMonth() + 3) / 3), // 季度
+    'f+': source.getMilliseconds() // 毫秒
+  }
+  if (/(y+)/.test(format)) {
+    format = format.replace(RegExp.$1, (source.getFullYear() + '').substr(4 - RegExp.$1.length))
+  }
+  for (let k in o) {
+    if (new RegExp('(' + k + ')').test(format)) {
+      format = format.replace(RegExp.$1, (RegExp.$1.length === 1) ? (o[k]) : (('00' + o[k]).substr(('' + o[k]).length)))
+    }
+  }
+  return format
+}
+
 export {
   test,
   getType,
@@ -1055,4 +1086,5 @@ export {
   saveCookie,
   getCookie,
   delCookie,
+  formatDate,
 }
