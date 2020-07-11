@@ -80,7 +80,7 @@ console.log(
 // console.log(process.env.VUE_APP_BASE_URL)
 
 // 请求文件
-import api from "./api3/api/index"
+import api from "./api3"
 
 Vue.prototype.$api = api
 
