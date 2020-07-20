@@ -1,5 +1,6 @@
-//小米官网rem自适应代码
-!function (n,uiWidth) {
+// //小米官网rem自适应代码
+let uiWidth = 750;
+!function (n) {
   var e = n.document,
     t = e.documentElement,
     i = uiWidth,
@@ -13,3 +14,4 @@
     };
   e.addEventListener && (n.addEventListener(o, a, !1), e.addEventListener("DOMContentLoaded", a, !1))
 }(window);
+

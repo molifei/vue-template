@@ -40,6 +40,9 @@ import "animate.css/animate.css"
 // 滚动条样式
 import "@/assets/css/scrollBar.less"
 
+// rem
+// import "./utils/rem"
+
 // 按需加载element-UI
 import {Button, Message, Notification, Table, TableColumn,} from "element-ui"
 
@@ -72,12 +75,6 @@ Vue.use(VueQuillEditor)
 
 // 是否显示生产模式的消息
 Vue.config.productionTip = false
-
-
-console.log(
-  // process.env.NODE_ENV
-)
-// console.log(process.env.VUE_APP_BASE_URL)
 
 // 请求文件
 import api from "./api3"
@@ -116,6 +113,9 @@ import VueNativeSock from 'vue-native-websocket'
 //         this.store.state.socket.message = msg;
 //     }
 // });
+
+// 生产模式不显示调试插件
+Vue.config.devtools = process.env.NODE_ENV === 'development'
 
 new Vue({
   router,

@@ -5,7 +5,7 @@
  */
 
 // URL列表
-import base from "../api/base"
+import base from "../base"
 // 封装过的axios实例
 import ajax from "../http.js"
 // QS  序列化参数

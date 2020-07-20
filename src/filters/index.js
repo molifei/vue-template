@@ -198,7 +198,7 @@ const getLetter = (value, type = 1) => {
     }
 };
 
-// 手机号码，身份证号码等数字类隐藏
+// 手机号码，身份证号码等数字类隐藏,支持邮箱，传入邮箱时，，start和end无效
 /*
 *
 * start 开头几个数字或字数
@@ -206,20 +206,42 @@ const getLetter = (value, type = 1) => {
 *
 * */
 const hideNum = (value, start = 0, end = 0) => {
-    // 先判断传入的数据类型 若是数字，转换为字符串
-    if (typeof value === "number") {
-        // value += ""
-        value = value.toString()
-    }
-    let hide = value.length - start - end;
+  // 先判断传入的数据类型 若是数字，转换为字符串
+  if (typeof value === 'number') {
+    // value += ""
+    value = value.toString();
+  }
 
-    let str = "";
-    for (let i = 0; i < hide; i++) {
-        str += "*"
+  // 如果传入目标为邮箱
+  if (value.includes('@')) {
+    let str = value.split('@');
+    let strArr = str[0].split('');
+    let emailPrefix,
+      joinStr = '';
+    if (strArr.length <= 4) {
+      for (let i = 0; i < strArr.length - 1; i++) {
+        joinStr += '*';
+      }
+      strArr.splice(1, strArr.length - 1, joinStr);
+      emailPrefix = strArr.join('');
+    } else {
+      for (let i = 0; i < 4; i++) {
+        joinStr += '*';
+      }
+      strArr.splice(strArr.length - 4, 4, joinStr);
+      emailPrefix = strArr.join('');
     }
-    let regNum = new RegExp(`(\\d{${start}})(\\d{${hide}})(\\d{${end}})`);
-    return value.replace(regNum, `$1${str}$3`)
-}
+    return emailPrefix + '@' + str[1];
+  }
+
+  let hide = value.length - start - end;
+  let str = '';
+  for (let i = 0; i < hide; i++) {
+    str += '*';
+  }
+  let regNum = new RegExp(`(\\d{${start}})(\\d{${hide}})(\\d{${end}})`);
+  return value.replace(regNum, `$1${str}$3`);
+};
 
 
 export {
