@@ -4,7 +4,7 @@ const AddAssetHtmlPlugin = require('add-asset-html-webpack-plugin')
 
 module.exports = {
   // 基本路径
-  publicPath: process.env.NODE_ENV === 'production' ? './' : '/',
+  publicPath: process.env.NODE_ENV === 'production' ? '/' : '/',
   // 输出文件目录
   outputDir: 'output',
   // 静态资源目录
@@ -42,11 +42,11 @@ module.exports = {
       }),
       new AddAssetHtmlPlugin({
         // dll文件位置
-        filepath: path.resolve(__dirname, '/public/vendor/*.js'),
+        filepath: path.resolve(__dirname, './public/vendor/*.js'),
         // dll 引用路径
-        publicPath: './vendor',
+        publicPath: '/vendor',
         // dll最终输出的目录
-        outputPath: './vendor'
+        outputPath: '/vendor'
       })
     ]
   },

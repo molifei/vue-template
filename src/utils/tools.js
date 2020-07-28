@@ -1043,6 +1043,24 @@ const formatDate = (source, format) => {
   return format
 }
 
+// 对象数组根据某个字段去重
+/*
+ * @author WYK
+ * @date 2020-07-28 11:50:32
+ * @param {Array}   dataArr 需要去重的对象数组
+ * @param {String}   key 去重关键字
+ * @return {Array}  去重完毕的数组
+ */
+const accordRemoveRepeat = function(dataArr, key) {
+  let tar = [];
+  tar = dataArr.reduce(function(arr, current) {
+    tar[current[key]] ? '' : tar[current[key]] = true && arr.push(current);
+    return arr;
+  }, []);
+
+  return tar;
+};
+
 export {
   test,
   getType,
@@ -1087,4 +1105,5 @@ export {
   getCookie,
   delCookie,
   formatDate,
+  accordRemoveRepeat
 }
