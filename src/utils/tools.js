@@ -1061,6 +1061,27 @@ const accordRemoveRepeat = function(dataArr, key) {
   return tar;
 };
 
+// 对象数组根据某个字段去重,并计数
+/*
+ * @author WYK
+ * @date2020-07-29 15:35:38
+ * @param {Array}   dataArr 需要去重的对象数组
+ * @param {String}   key 去重关键字
+ * @param {String}   count 计数字段
+ * @return {Array}  去重完毕的数组
+ */
+const accordRemoveRepeatCount = function(dataArr, key, count) {
+  return dataArr.reduce((obj, item) => {
+    let find = obj.find(i => i[key] === item[key]);
+    let _d = {
+      ...item,
+    };
+    _d[count] = 1;
+    find ? find[count]++ : obj.push(_d);
+    return obj;
+  }, []);
+};
+
 export {
   test,
   getType,
@@ -1105,5 +1126,6 @@ export {
   getCookie,
   delCookie,
   formatDate,
-  accordRemoveRepeat
+  accordRemoveRepeat,
+  accordRemoveRepeatCount,
 }
