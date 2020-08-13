@@ -20,12 +20,12 @@ const music = {
   },
   // 获取排行榜
   getList(params) {
-    return ajax.post(`${host}/toplist`, qs.stringify(parmas))
+    return ajax.post(`${host}/toplist`, qs.stringify(params))
   },
   // 获取排行榜
   getList2(params) {
-    return ajax.post(`${host}/toplist`, qs.stringify(parmas, {arrayFormat: 'repeat'})) // 传数组需要此配置
-  }
+    return ajax.post(`${host}/toplist`, qs.stringify(params, {arrayFormat: 'repeat'})) // 传数组需要此配置
+  },
 }
 
 export default music

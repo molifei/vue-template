@@ -8,7 +8,7 @@ import * as CDATA from "./constant"
 Vue.prototype.CDATA = CDATA
 
 // 引入工具函数
-import * as tools from "./utils/tools.js"
+import tools from "./utils/tools"
 
 Vue.prototype.$tools = tools
 
