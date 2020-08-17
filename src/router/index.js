@@ -25,10 +25,10 @@ const routes = [
     path: '/lazy',
     name: 'Lazy',
     component: () => import('../views/Lazy/Lazy'),
-    children:[
+    children: [
       {
-        path:"/lazy/son",
-        name:"lazy-son",
+        path: "/lazy/son",
+        name: "lazy-son",
         component: () => import('../views/Lazy/LazySon'),
       }
     ]
@@ -37,11 +37,6 @@ const routes = [
     path: '/edit',
     name: 'Edit',
     component: () => import('../views/Edit/Edit')
-  },
-  {
-    path: '/chart',
-    name: 'Chart',
-    component: () => import('../views/Chart/Chart')
   },
   {
     path: '/music',
@@ -54,14 +49,27 @@ const routes = [
     component: () => import('../views/WebSocket/WebSocket')
   },
   {
-    path: '/table',
-    name: 'Table',
-    component: () => import('../views/TableShow/TableShow')
-  },
-  {
     path: '/st',
     name: 'StoreTest',
     component: () => import('../views/StoreTest/StoreTest')
+  },
+  {
+    path: '/admin',
+    name: 'Admin',
+    redirect: "/chart",
+    component: () => import('../Layout/Layout'),
+    children: [
+      {
+        path: '/chart',
+        name: 'Chart',
+        component: () => import('../views/Chart/Chart')
+      },
+      {
+        path: '/table',
+        name: 'Table',
+        component: () => import('../views/TableShow/TableShow')
+      },
+    ]
   },
 ]
 

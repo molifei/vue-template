@@ -1,9 +1,5 @@
 <template>
   <div id="app">
-    <div class="dv">
-
-    </div>
-    <p>小明</p>
     <transition name="slide" mode="out-in">
       <router-view></router-view>
     </transition>
@@ -12,9 +8,9 @@
 
 <style scoped lang="less">
   .dv {
-    width: 100rem;
-    height: 100rem;
-    border: 10rem solid red;
+    width: .1rem;
+    height: .1rem;
+    border: 1px solid red;
   }
 
   p {
