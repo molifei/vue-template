@@ -1,11 +1,12 @@
 /*
-*
-* 统一请求接口的模块
-*
-* */
+ * @author WYK
+ * 接口的统一出口，调用只需引入此文件
+ *
+ */
 
-import ajax from "./api"
+// 音乐模块
+import music from "./modules/music"
 
-// const BASE_URL = ""
-
-
+export default {
+    music,
+}

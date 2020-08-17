@@ -10,7 +10,7 @@ import axios from "axios"
 // QS  序列化参数
 import QS from "qs"
 // vuex
-import store from "../store/index"
+import store from "../../store"
 import Vue from "vue"
 
 const _this = Vue.prototype

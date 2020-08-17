@@ -3,19 +3,19 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 // 引入常量
-import * as CDATA from "./constant"
+import * as CDATA from "@/constant"
 
 Vue.prototype.CDATA = CDATA
 
 // 引入工具函数
-import tools from "./utils/tools"
+import tools from "@/utils/tools"
 
 Vue.prototype.$tools = tools
 
 // 正则
-import * as reg from "./utils/reg"
+import reg from "@/utils/reg"
 
-Vue.prototype.reg = reg
+Vue.prototype.$reg = reg
 
 // loadsh
 import _ from "lodash"
@@ -26,7 +26,7 @@ Vue.prototype._ = _
 require("es6-promise").polyfill()
 
 // rem
-import "./utils/rem"
+import "@/utils/rem"
 
 // 初始化css
 // pc
@@ -77,7 +77,7 @@ Vue.use(VueQuillEditor)
 Vue.config.productionTip = false
 
 // 请求文件
-import api from "./api3"
+import api from "@/api"
 
 Vue.prototype.$api = api
 

@@ -27,7 +27,7 @@
 
 <script>
 import banner from "@/components/swipe/swipe";
-import {getA, getB} from "../api2"
+import {getA, getB} from "../pass/api2"
 
 export default {
   name: "Home",
