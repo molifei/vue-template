@@ -44,6 +44,7 @@ import "@/assets/css/scrollBar.less"
 // import "./utils/rem"
 
 // 按需加载element-UI
+import '@/theme/index.css'
 import {Button, Message, Notification, Table, TableColumn,} from "element-ui"
 
 Vue.use(Button)

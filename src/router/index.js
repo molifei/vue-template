@@ -71,6 +71,11 @@ const routes = [
       },
     ]
   },
+  {
+    path: '*',
+    name: 'NotFound',
+    component: () => import('../views/NotFound/NotFound')
+  },
 ]
 
 const router = new VueRouter({
