@@ -48,7 +48,7 @@
             },
             onEditorChange() {// 内容改变事件
                 // 内容存进local
-                this.tools.saveS("edit", this.content)
+                this.$tools.saveS("edit", this.content)
                 // 隐藏弹窗
                 this.flag && (this.flag = false)
             },
@@ -57,7 +57,7 @@
             },
             // 进入页面时，检测localStorage中是否有存储的值，防止用户误刷新
             editRemedy() {
-                let edit = this.tools.getS("edit")
+                let edit = this.$tools.getS("edit")
                 if (edit === null) {
                     this.content = ``
                 } else {
@@ -68,14 +68,14 @@
                 // 判断用户填充操作
                 if (bool) {
                     // 如果确认填充，获取存储的内容
-                    this.content = this.tools.getS("edit")
+                    this.content = this.$tools.getS("edit")
                     // 隐藏弹框
                     this.flag = false
                 } else {
                     // 如果取消填充
                     this.content = ``
                     // 清空local存储的值
-                    this.tools.delS("edit")
+                    this.$tools.delS("edit")
                     // 隐藏弹框
                     this.flag = false
                 }
