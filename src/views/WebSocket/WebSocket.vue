@@ -5,42 +5,42 @@
 </template>
 
 <script>
-  import {createSocket, sendWSPush} from "../../utils/websocket"
+import { createSocket, sendWSPush } from '../../utils/websocket'
 
-  export default {
-    name: "WebSocket",
-    data() {
-      return {
-        msg: ""
-      }
-    },
-    watch: {
-      msg(newVal, oldVal) {
-        if (newVal !== oldVal) {
-          this.$message.success(`原来是${oldVal}，现在是${newVal}`)
-        }
-      }
-    },
-    methods: {
-      getData() {
-        let _this = this
-        // 创建
-        createSocket()
-        // 发送数据
-        sendWSPush("")
-
-        // 监听相应数据
-        const getDataFn = function (e) {
-          _this.msg = e.detail.data.data
-          console.log(e)
-        }
-        window.addEventListener('onmessageWS', getDataFn)
-      }
-    },
-    mounted() {
-      this.getData()
+export default {
+  name: 'WebSocket',
+  data() {
+    return {
+      msg: ''
     }
+  },
+  watch: {
+    msg(newVal, oldVal) {
+      if (newVal !== oldVal) {
+        this.$message.success(`原来是${oldVal}，现在是${newVal}`)
+      }
+    }
+  },
+  methods: {
+    getData() {
+      let _this = this
+      // 创建
+      createSocket()
+      // 发送数据
+      sendWSPush('')
+
+      // 监听相应数据
+      const getDataFn = function(e) {
+        _this.msg = e.detail.data.data
+        console.log(e)
+      }
+      window.addEventListener('onmessageWS', getDataFn)
+    }
+  },
+  mounted() {
+    this.getData()
   }
+}
 </script>
 
 <!--<script>-->

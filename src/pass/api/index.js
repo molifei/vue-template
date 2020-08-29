@@ -4,8 +4,7 @@
 *
 * */
 
-import ajax from "./api"
+import ajax from './api'
 
 // const BASE_URL = ""
-
 

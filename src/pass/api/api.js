@@ -14,34 +14,34 @@
 *
 * */
 
-import axios from "axios"
+import axios from 'axios'
 
 import Vue from 'vue';
 
-axios.defaults.baseURL="https://manage.zhou-yuanwai.com/comprehens"
+axios.defaults.baseURL='https://manage.zhou-yuanwai.com/comprehens'
 
-function ajax(url, data = {}, type = "get") {
+function ajax(url, data = {}, type = 'get') {
 
-    // 处理请求异常
-    return new Promise(((resolve, reject) => {
-        let promise;
-        // 1.执行异步ajax请求
-        if (type === "get") { // 若请求方式是get
-            promise = axios.get(url, {
-                params: data
-            })
-        } else if (type === "post") { // 若请求方式是get
-            promise = axios.post(url, data)
-        }
+  // 处理请求异常
+  return new Promise(((resolve, reject) => {
+    let promise;
+    // 1.执行异步ajax请求
+    if (type === 'get') { // 若请求方式是get
+      promise = axios.get(url, {
+        params: data
+      })
+    } else if (type === 'post') { // 若请求方式是get
+      promise = axios.post(url, data)
+    }
 
-        // 2.如果成功了，调用resolve(value)
-        promise.then(res => {
-            resolve(res)
-        }).catch(err => {
-            // 3.如果失败了，不调用reject(value)，显示提示异常信息
-            Message.error("请求异常，请刷新重试")
-        })
-    }));
+    // 2.如果成功了，调用resolve(value)
+    promise.then(res => {
+      resolve(res)
+    }).catch(err => {
+      // 3.如果失败了，不调用reject(value)，显示提示异常信息
+      Message.error('请求异常，请刷新重试')
+    })
+  }));
 }
 
 export default ajax

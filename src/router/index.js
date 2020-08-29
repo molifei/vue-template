@@ -4,8 +4,8 @@ import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 
 // 引入进度条
-import NProgress from "nprogress"
-import "nprogress/nprogress.css"
+import NProgress from 'nprogress'
+import 'nprogress/nprogress.css'
 
 NProgress.configure({
   easing: 'ease',  // 动画方式
@@ -27,8 +27,8 @@ const routes = [
     component: () => import('../views/Lazy/Lazy'),
     children: [
       {
-        path: "/lazy/son",
-        name: "lazy-son",
+        path: '/lazy/son',
+        name: 'lazy-son',
         component: () => import('../views/Lazy/LazySon'),
       }
     ]
@@ -54,9 +54,14 @@ const routes = [
     component: () => import('../views/StoreTest/StoreTest')
   },
   {
+    path: '/move',
+    name: 'Move',
+    component: () => import('../views/Move/Move')
+  },
+  {
     path: '/admin',
     name: 'Admin',
-    redirect: "/chart",
+    redirect: '/chart',
     component: () => import('../Layout/Layout'),
     children: [
       {

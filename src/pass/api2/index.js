@@ -7,8 +7,8 @@
 
 // http://localhost:3000/personalized/mv
 
-import {get, post} from "./api"
+import { get, post } from './api'
 
-export const getA = ()=>get("http://localhost:3000/personalized/mv")
+export const getA = () => get('http://localhost:3000/personalized/mv')
 
-export const getB = ()=>post("http://localhost:3000/personalized/mv")
+export const getB = () => post('http://localhost:3000/personalized/mv')

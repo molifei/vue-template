@@ -15,23 +15,23 @@
 </template>
 
 <script>
-  import TableComponents from "@/components/table/table"
-  export default {
-    name: "TableShow",
-    data(){
-      return{
+import TableComponents from '@/components/table/table'
+export default {
+  name: 'TableShow',
+  data() {
+    return {
 
-      }
-    },
-    methods:{
-      handleClick(row){
-        console.log(row)
-      }
-    },
-    components:{
-      TableComponents
     }
+  },
+  methods: {
+    handleClick(row) {
+      console.log(row)
+    }
+  },
+  components: {
+    TableComponents
   }
+}
 </script>
 
 <style scoped lang="less">

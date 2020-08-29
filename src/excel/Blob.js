@@ -8,16 +8,16 @@
  *   See https://github.com/eligrey/Blob.js/blob/master/LICENSE.md
  */
 
-;(function(){
+(function() {
 
-  var global = typeof window === 'object'
-    ? window : typeof self === 'object'
-      ? self : this
+  var global = typeof window === 'object' ?
+    window : typeof self === 'object' ?
+      self : this
 
-  var BlobBuilder = global.BlobBuilder
-    || global.WebKitBlobBuilder
-    || global.MSBlobBuilder
-    || global.MozBlobBuilder;
+  var BlobBuilder = global.BlobBuilder ||
+    global.WebKitBlobBuilder ||
+    global.MSBlobBuilder ||
+    global.MozBlobBuilder;
 
   global.URL = global.URL || global.webkitURL || function(href, a) {
     a = document.createElement('a')
@@ -32,9 +32,9 @@
   var blobSupported = false
   var blobSupportsArrayBufferView = false
   var arrayBufferSupported = !!global.ArrayBuffer
-  var blobBuilderSupported = BlobBuilder
-    && BlobBuilder.prototype.append
-    && BlobBuilder.prototype.getBlob;
+  var blobBuilderSupported = BlobBuilder &&
+    BlobBuilder.prototype.append &&
+    BlobBuilder.prototype.getBlob;
 
   try {
     // Check if Blob constructor is supported
@@ -42,8 +42,8 @@
 
     // Check if Blob constructor supports ArrayBufferViews
     // Fails in Safari 6, so we need to map to ArrayBuffers there.
-    blobSupportsArrayBufferView = new Blob([new Uint8Array([1,2])]).size === 2
-  } catch(e) {}
+    blobSupportsArrayBufferView = new Blob([new Uint8Array([1, 2])]).size === 2
+  } catch (e) {}
 
   /**
    * Helper function that maps ArrayBufferViews to ArrayBuffers
@@ -79,11 +79,11 @@
     });
 
     return options.type ? bb.getBlob(options.type) : bb.getBlob();
-  };
+  }
 
   function BlobConstructor(ary, options) {
     return new origBlob(mapArrayBufferViews(ary), options || {});
-  };
+  }
 
   if (global.Blob) {
     BlobBuilderConstructor.prototype = Blob.prototype;
@@ -99,8 +99,7 @@
         else if (charcode < 0x800) {
           utf8.push(0xc0 | (charcode >> 6),
             0x80 | (charcode & 0x3f));
-        }
-        else if (charcode < 0xd800 || charcode >= 0xe000) {
+        } else if (charcode < 0xd800 || charcode >= 0xe000) {
           utf8.push(0xe0 | (charcode >> 12),
             0x80 | ((charcode>>6) & 0x3f),
             0x80 | (charcode & 0x3f));
@@ -111,8 +110,8 @@
           // UTF-16 encodes 0x10000-0x10FFFF by
           // subtracting 0x10000 and splitting the
           // 20 bits of 0x0-0xFFFFF into two halves
-          charcode = 0x10000 + (((charcode & 0x3ff)<<10)
-            | (str.charCodeAt(i) & 0x3ff));
+          charcode = 0x10000 + (((charcode & 0x3ff)<<10) |
+            (str.charCodeAt(i) & 0x3ff));
           utf8.push(0xf0 | (charcode >>18),
             0x80 | ((charcode>>12) & 0x3f),
             0x80 | ((charcode>>6) & 0x3f),
@@ -125,30 +124,29 @@
       var out, i, len, c;
       var char2, char3;
 
-      out = "";
+      out = '';
       len = array.length;
       i = 0;
       while (i < len) {
         c = array[i++];
-        switch (c >> 4)
-        {
-          case 0: case 1: case 2: case 3: case 4: case 5: case 6: case 7:
+        switch (c >> 4) {
+        case 0: case 1: case 2: case 3: case 4: case 5: case 6: case 7:
           // 0xxxxxxx
           out += String.fromCharCode(c);
           break;
-          case 12: case 13:
+        case 12: case 13:
           // 110x xxxx   10xx xxxx
           char2 = array[i++];
           out += String.fromCharCode(((c & 0x1F) << 6) | (char2 & 0x3F));
           break;
-          case 14:
-            // 1110 xxxx  10xx xxxx  10xx xxxx
-            char2 = array[i++];
-            char3 = array[i++];
-            out += String.fromCharCode(((c & 0x0F) << 12) |
+        case 14:
+          // 1110 xxxx  10xx xxxx  10xx xxxx
+          char2 = array[i++];
+          char3 = array[i++];
+          out += String.fromCharCode(((c & 0x0F) << 12) |
               ((char2 & 0x3F) << 6) |
               ((char3 & 0x3F) << 0));
-            break;
+          break;
         }
       }
       return out;
@@ -160,7 +158,7 @@
       var view = new Array(buf.byteLength)
       var array = new Uint8Array(buf)
       var i = view.length
-      while(i--) {
+      while (i--) {
         view[i] = array[i]
       }
       return view
@@ -198,7 +196,7 @@
       return output.join('')
     }
 
-    var create = Object.create || function (a) {
+    var create = Object.create || function(a) {
       function c() {}
       c.prototype = a;
       return new c
@@ -251,7 +249,7 @@
 
     Blob.prototype.slice = function(start, end, type) {
       var slice = this._buffer.slice(start || 0, end || this._buffer.length)
-      return new Blob([slice], {type: type})
+      return new Blob([slice], { type })
     }
 
     Blob.prototype.toString = function() {
@@ -279,7 +277,9 @@
     if (Object.setPrototypeOf)
       Object.setPrototypeOf(File, Blob);
     else {
-      try {File.__proto__ = Blob} catch (e) {}
+      try {
+        File.__proto__ = Blob
+      } catch (e) {}
     }
 
     File.prototype.toString = function() {
@@ -292,7 +292,7 @@
     /********************************************************/
     function FileReader() {
       if (!(this instanceof FileReader))
-        throw new TypeError("Failed to construct 'FileReader': Please use the 'new' operator, this DOM object constructor cannot be called as a function.")
+        throw new TypeError('Failed to construct \'FileReader\': Please use the \'new\' operator, this DOM object constructor cannot be called as a function.')
 
       var delegate = document.createDocumentFragment()
       this.addEventListener = delegate.addEventListener
@@ -306,11 +306,11 @@
 
     function _read(fr, blob, kind) {
       if (!(blob instanceof Blob))
-        throw new TypeError("Failed to execute '" + kind + "' on 'FileReader': parameter 1 is not of type 'Blob'.")
+        throw new TypeError('Failed to execute \'' + kind + '\' on \'FileReader\': parameter 1 is not of type \'Blob\'.')
 
       fr.result = ''
 
-      setTimeout(function(){
+      setTimeout(function() {
         this.readyState = FileReader.LOADING
         fr.dispatchEvent(new Event('load'))
         fr.dispatchEvent(new Event('loadend'))
@@ -350,9 +350,9 @@
     /*                         URL                          */
     /********************************************************/
     URL.createObjectURL = function(blob) {
-      return blob instanceof Blob
-        ? 'data:' + blob.type + ';base64,' + encodeByteArray(blob._buffer)
-        : createObjectURL.call(URL, blob)
+      return blob instanceof Blob ?
+        'data:' + blob.type + ';base64,' + encodeByteArray(blob._buffer) :
+        createObjectURL.call(URL, blob)
     }
 
     URL.revokeObjectURL = function(url) {
@@ -408,7 +408,7 @@
 
     try {
       new File([], '')
-    } catch(e) {
+    } catch (e) {
       try {
         var klass = new Function('class File extends Blob {' +
           'constructor(chunks, name, opts) {' +
@@ -421,7 +421,7 @@
           'return new File([], ""), File'
         )()
         global.File = klass
-      } catch(e) {
+      } catch (e) {
         var klass = function(b, d, c) {
           var blob = new Blob(b, c)
           var t = c && void 0 !== c.lastModified ? new Date(c.lastModified) : new Date

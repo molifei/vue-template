@@ -5,9 +5,9 @@
 </template>
 
 <script>
-  export default {
-    name: "LazySon"
-  }
+export default {
+  name: 'LazySon'
+}
 </script>
 
 <style scoped lang="less">

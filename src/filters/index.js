@@ -1,6 +1,6 @@
 // 过滤器
-import moment from "moment";
-import tools from "@/utils/tools"
+import moment from 'moment';
+import tools from '@/utils/tools'
 
 // 时间过滤
 /*
@@ -9,7 +9,7 @@ import tools from "@/utils/tools"
 * cn:是否设置中文，默认否
 *
 * */
-const getDate = (value, format = "YYYY-MM-DD hh:mm:ss", cn = true) => {
+const getDate = (value, format = 'YYYY-MM-DD hh:mm:ss', cn = true) => {
   function chinese() {
     return moment.locale('zh-cn', {
       months: '一月_二月_三月_四月_五月_六月_七月_八月_九月_十月_十一月_十二月'.split('_'),
@@ -30,7 +30,7 @@ const getDate = (value, format = "YYYY-MM-DD hh:mm:ss", cn = true) => {
         llll: 'YYYY年M月D日dddd HH:mm'
       },
       meridiemParse: /凌晨|早上|上午|中午|下午|晚上/,
-      meridiemHour: function (hour, meridiem) {
+      meridiemHour(hour, meridiem) {
         if (hour === 12) {
           hour = 0;
         }
@@ -44,7 +44,7 @@ const getDate = (value, format = "YYYY-MM-DD hh:mm:ss", cn = true) => {
           return hour >= 11 ? hour : hour + 12;
         }
       },
-      meridiem: function (hour, minute, isLower) {
+      meridiem(hour, minute, isLower) {
         const hm = hour * 100 + minute;
         if (hm < 600) {
           return '凌晨';
@@ -69,19 +69,19 @@ const getDate = (value, format = "YYYY-MM-DD hh:mm:ss", cn = true) => {
         sameElse: 'L'
       },
       dayOfMonthOrdinalParse: /\d{1,2}(日|月|周)/,
-      ordinal: function (number, period) {
+      ordinal(number, period) {
         switch (period) {
-          case 'd':
-          case 'D':
-          case 'DDD':
-            return number + '日';
-          case 'M':
-            return number + '月';
-          case 'w':
-          case 'W':
-            return number + '周';
-          default:
-            return number;
+        case 'd':
+        case 'D':
+        case 'DDD':
+          return number + '日';
+        case 'M':
+          return number + '月';
+        case 'w':
+        case 'W':
+          return number + '周';
+        default:
+          return number;
         }
       },
       relativeTime: {
@@ -108,7 +108,7 @@ const getDate = (value, format = "YYYY-MM-DD hh:mm:ss", cn = true) => {
     })
   }
 
-  cn ? chinese() : "";
+  cn ? chinese() : '';
   return moment(value).format(format);
 }
 
@@ -150,53 +150,53 @@ const getLetter = (value, type = 1) => {
   // 去空格
   value = value.trim();
   switch (type) {
-    case 1:
-      return value.split("").reduce((prev, item, index) => {
-        if (index === 0) {
-          item = item.toUpperCase()
-        }
-        return prev + item
-      }, "");
-    case 2:
-      return value.split("").reduce((prev, item, index) => {
-        if (index === 0) {
-          item = item.toUpperCase()
-        } else {
-          item = item.toLowerCase()
-        }
-        return prev + item
-      }, "");
-    case 3:
-      return value.split("").reduce((prev, item, index) => {
-        if (index === 0) {
-          item = item.toLowerCase()
-        }
-        return prev + item
-      }, "");
-    case 4:
-      return value.split("").reduce((prev, item, index) => {
-        // 判断大写正则
-        let upReg = /^[A-Z]+$/;
-        // let lowReg = "^[a-z]+$"; //用一个即可
-        upReg.test(item) ? item = item.toLowerCase() : item = item.toUpperCase();
-        return prev + item
-      }, "");
-    case 5:
-      return value.split("").reduce((prev, item, index) => {
-        // 判断大写正则
-        let upReg = /^[A-Z]+$/;
-        // let lowReg = "^[a-z]+$"; //用一个即可
-        item = upReg.test(item) ? item : item.toUpperCase();
-        return prev + item
-      }, "");
-    case 6:
-      return value.split("").reduce((prev, item, index) => {
-        // 判断大写正则
-        let upReg = /^[A-Z]+$/;
-        // let lowReg = "^[a-z]+$"; //用一个即可
-        item = upReg.test(item) ? item.toLowerCase() : item;
-        return prev + item
-      }, "");
+  case 1:
+    return value.split('').reduce((prev, item, index) => {
+      if (index === 0) {
+        item = item.toUpperCase()
+      }
+      return prev + item
+    }, '');
+  case 2:
+    return value.split('').reduce((prev, item, index) => {
+      if (index === 0) {
+        item = item.toUpperCase()
+      } else {
+        item = item.toLowerCase()
+      }
+      return prev + item
+    }, '');
+  case 3:
+    return value.split('').reduce((prev, item, index) => {
+      if (index === 0) {
+        item = item.toLowerCase()
+      }
+      return prev + item
+    }, '');
+  case 4:
+    return value.split('').reduce((prev, item, index) => {
+      // 判断大写正则
+      let upReg = /^[A-Z]+$/;
+      // let lowReg = "^[a-z]+$"; //用一个即可
+      upReg.test(item) ? item = item.toLowerCase() : item = item.toUpperCase();
+      return prev + item
+    }, '');
+  case 5:
+    return value.split('').reduce((prev, item, index) => {
+      // 判断大写正则
+      let upReg = /^[A-Z]+$/;
+      // let lowReg = "^[a-z]+$"; //用一个即可
+      item = upReg.test(item) ? item : item.toUpperCase();
+      return prev + item
+    }, '');
+  case 6:
+    return value.split('').reduce((prev, item, index) => {
+      // 判断大写正则
+      let upReg = /^[A-Z]+$/;
+      // let lowReg = "^[a-z]+$"; //用一个即可
+      item = upReg.test(item) ? item.toLowerCase() : item;
+      return prev + item
+    }, '');
   }
 };
 

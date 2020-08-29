@@ -5,11 +5,11 @@
  */
 
 // URL列表
-import base from "../base"
+import base from '../base'
 // 封装过的axios实例
-import ajax from "../http.js"
+import ajax from '../http.js'
 // QS  序列化参数
-import qs from "qs"
+import qs from 'qs'
 
 const host = base.dev
 
@@ -24,7 +24,7 @@ const music = {
   },
   // 获取排行榜
   getList2(params) {
-    return ajax.post(`${host}/toplist`, qs.stringify(params, {arrayFormat: 'repeat'})) // 传数组需要此配置
+    return ajax.post(`${host}/toplist`, qs.stringify(params, { arrayFormat: 'repeat' })) // 传数组需要此配置
   },
 }
 

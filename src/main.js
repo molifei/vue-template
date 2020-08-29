@@ -3,49 +3,49 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 // 引入常量
-import * as CDATA from "@/constant"
+import * as CDATA from '@/constant'
 
 Vue.prototype.CDATA = CDATA
 
 // 引入工具函数
-import tools from "@/utils/tools"
+import tools from '@/utils/tools'
 
 Vue.prototype.$tools = tools
 
 // 正则
-import reg from "@/utils/reg"
+import reg from '@/utils/reg'
 
 Vue.prototype.$reg = reg
 
 // loadsh
-import _ from "lodash"
+import _ from 'lodash'
 
 Vue.prototype._ = _
 
 // 引入es6-promise，解决IE不支持的问题
-require("es6-promise").polyfill()
+require('es6-promise').polyfill()
 
 // rem
-import "@/utils/rem"
+import '@/utils/rem'
 
 // 初始化css
 // pc
-import "@/assets/css/pc/base.css"
+import '@/assets/css/pc/base.css'
 // 移动
 // import "@/assets/css/mb/base.css"
 
 // 引入animate.css
-import "animate.css/animate.css"
+import 'animate.css/animate.css'
 
 // 滚动条样式
-import "@/assets/css/scrollBar.less"
+import '@/assets/css/scrollBar.less'
 
 // rem
 // import "./utils/rem"
 
 // 按需加载element-UI
 import '@/theme/index.css'
-import {Button, Message, Notification, Table, TableColumn,} from "element-ui"
+import { Button, Message, Notification, Table, TableColumn, } from 'element-ui'
 
 Vue.use(Button)
 Vue.use(Table)
@@ -62,11 +62,11 @@ Object.keys(filter).forEach(key => {
 
 // 图片懒加载
 // 使用本地图片需require()
-import vueLazyLoad from "vue-lazyload"
+import vueLazyLoad from 'vue-lazyload'
 
 Vue.use(vueLazyLoad, {
-  error: require("@/assets/img/error.jpg"),
-  loading: require("@/assets/img/load4.gif")
+  error: require('@/assets/img/error.jpg'),
+  loading: require('@/assets/img/load4.gif')
 })
 
 // vue-quill-editor富文本编辑器
@@ -78,9 +78,14 @@ Vue.use(VueQuillEditor)
 Vue.config.productionTip = false
 
 // 请求文件
-import api from "@/api"
+import api from '@/api'
 
 Vue.prototype.$api = api
+
+// 拖拽
+import VueDND from 'awe-dnd'
+
+Vue.use(VueDND)
 
 // websocket
 import VueNativeSock from 'vue-native-websocket'
@@ -125,14 +130,14 @@ new Vue({
 }).$mount('#app')
 
 //  ┏┓　　　┏┓
-//┏┛┻━━━┛┻┓
-//┃　　　　　　　┃
-//┃　　　━　　　┃
-//┃　┳┛　┗┳　┃
-//┃　　　　　　　┃
-//┃　　　┻　　　┃
-//┃　　　　　　　┃
-//┗━┓　　　┏━┛
+// ┏┛┻━━━┛┻┓
+// ┃　　　　　　　┃
+// ┃　　　━　　　┃
+// ┃　┳┛　┗┳　┃
+// ┃　　　　　　　┃
+// ┃　　　┻　　　┃
+// ┃　　　　　　　┃
+// ┗━┓　　　┏━┛
 //    ┃　　　┃                  神兽保佑
 //    ┃　　　┃                  永无BUG！
 //    ┃　　　┗━━━┓
