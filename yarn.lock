@@ -1692,6 +1692,11 @@ autoprefixer@^9.8.5:
     postcss "^7.0.32"
     postcss-value-parser "^4.1.0"
 
+awe-dnd@^0.3.4:
+  version "0.3.4"
+  resolved "https://registry.npm.taobao.org/awe-dnd/download/awe-dnd-0.3.4.tgz#5913d12e0bd32f3e7e4f6361a870e8ea623496eb"
+  integrity sha1-WRPRLgvTLz5+T2NhqHDo6mI0lus=
+
 aws-sign2@~0.7.0:
   version "0.7.0"
   resolved "https://registry.npm.taobao.org/aws-sign2/download/aws-sign2-0.7.0.tgz#b46e890934a9591f2d2f6f86d7e6a9f1b3fe76a8"
@@ -8645,11 +8650,6 @@ vue-router@^3.1.6:
   version "3.3.4"
   resolved "https://registry.npm.taobao.org/vue-router/download/vue-router-3.3.4.tgz#4e38abc34a11c41b6c3d8244449a2e363ba6250b"
   integrity sha1-Tjirw0oRxBtsPYJERJouNjumJQs=
-
-vue-slicksort@^1.1.3:
-  version "1.1.3"
-  resolved "https://registry.npm.taobao.org/vue-slicksort/download/vue-slicksort-1.1.3.tgz#f8e0a1623bfb8aa39db683e28ac7bea5d9a2d9dc"
-  integrity sha1-+OChYjv7iqOdtoPiise+pdmi2dw=
 
 vue-style-loader@^4.1.0, vue-style-loader@^4.1.2:
   version "4.1.2"
