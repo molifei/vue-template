@@ -62,7 +62,7 @@ const routes = [
     path: '/admin',
     name: 'Admin',
     redirect: '/chart',
-    component: () => import('../Layout/Layout'),
+    component: () => import('../layout/Layout'),
     children: [
       {
         path: '/chart',

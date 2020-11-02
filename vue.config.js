@@ -6,11 +6,11 @@ module.exports = {
   // 基本路径
   publicPath: process.env.NODE_ENV === 'production' ? '/' : '/',
   // 输出文件目录
-  outputDir: 'output',
+  outputDir: 'dist',
   // 静态资源目录
-  assetsDir: "assets",
+  assetsDir: 'assets',
   // 指定生成的index.html的输出路径
-  indexPath: "index.html",
+  indexPath: 'index.html',
   // 静态资源文件名是否包含哈希
   filenameHashing: true,
   // eslint-loader 是否在保存的时候检查
@@ -25,7 +25,7 @@ module.exports = {
       .rule('images')
       .use('url-loader')
       .loader('url-loader')
-      .tap(options => Object.assign(options, {limit: 2000})) // 小于2k的图片会转化为base64
+      .tap(options => Object.assign(options, { limit: 2000 })) // 小于2k的图片会转化为base64
 
     config
       .plugin('html')

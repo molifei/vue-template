@@ -22,7 +22,7 @@ import '@/assets/css/pc/base.css'
 // 引入animate.css
 import 'animate.css/animate.css'
 // 滚动条样式
-import '@/assets/css/scrollBar.less'
+// import '@/assets/css/scrollBar.less'
 // vue-quill-editor富文本编辑器
 import VueQuillEditor from 'vue-quill-editor'
 // 拖拽插件

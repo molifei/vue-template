@@ -191,13 +191,11 @@ tools.deepClone = function(data) {
   let target = type === 'Array' ? [] : {};
 
   for (let key in data) {
+    console.log(data[key])
     // 判断每一项是否还是数组或者对象
+    // eslint-disable-next-line no-prototype-builtins
     if (data.hasOwnProperty(key)) {
-      if (data[key] === 'object') {
-        this.deepClone(data[key]);
-      } else {
-        target[key] = data[key];
-      }
+      target[key] = typeof data[key] === 'object' ? this.deepClone(data[key]) : data[key];
     }
   }
   return target;
@@ -707,7 +705,7 @@ tools.stripHTMLTags = function(str) {
  * @param {String}  tagName 标签名，类名等
  * @return {void}
  */
-const hideTag = function(tagName) {
+tools.hideTag = function(tagName) {
   document.querySelectorAll(tagName).forEach(e => e.style.display = 'none')
 }
 
@@ -815,8 +813,9 @@ tools.compressCss = function(s) {
  * @param {String}      URL     检测的连接
  * @return {Boolean}
  */
+
 // eslint-disable-next-line no-unused-vars
-function getUrlState(URL) {
+tools.getUrlState = function(URL) {
   // eslint-disable-next-line no-undef
   var xmlhttp = new ActiveXObject('microsoft.xmlhttp');
   xmlhttp.Open('GET', URL, false);
@@ -988,10 +987,10 @@ tools.getOneChinese = function() {
  * @return {}
  */
 tools.getRandomChinese = function(min, max) {
-  let arr = new Array(getRandom(min, max)).fill(1);
+  let arr = new Array(this.getRandom(min, max)).fill(1);
   let str = '';
   arr.map(item => {
-    str += getRandomChinese();
+    str += this.getRandomChinese();
   });
   return str;
 };
@@ -1180,6 +1179,33 @@ tools.getJsonp = function(options) {
  */
 tools.isEmptyObject = function(obj) {
   return Object.keys(obj).length !== 0
+}
+
+/*
+ * @desc 获取一个对象数组中的id集合
+ * @author WYK
+ * @date 2020-09-01 17:35:31
+ * @param {Array} data  需要循环的对象数组
+ * @param {String} key  关键字，默认为id
+ * @return {Array}  ids 返回的数组集合
+ */
+tools.getIds = function(data, key = 'id') {
+  let ids = []
+  data.forEach(item => {
+    ids.push(item[key])
+  })
+  return ids
+}
+
+/*
+ * @desc 判断对象是否为空
+ * @author WYK
+ * @date 2020-09-15 15:39:49
+ * @param {Object} data 需要判断的对象
+ * @return {Boolean}  是否为空  true为空
+ */
+tools.isEmpty = function(data) {
+  return (Object.keys(data)).length === 0;
 }
 
 export default tools;

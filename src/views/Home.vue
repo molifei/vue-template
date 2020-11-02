@@ -6,90 +6,36 @@
     <router-link to="/edit" tag="a">去/edit</router-link>
     <br />
 
-    <el-button type="primary" @click="getList">主要按钮</el-button>
-    <p>{{ CDATA.NAME }}</p>
-    <p>{{ msg | wordLimit(9)}}</p>
-    <p>{{ msg2 | wordLimit(9)}}</p>
-    <p>{{ "" | getDate("lll") }}</p>
-    <p>{{ letter | getLetter(5) }}</p>
-    <p>{{ phone | hideNum(3) }}</p>
-    <p>{{ idCard | hideNum(2,2) }}</p>
-    <div id="dv" ref="dv">
-
-    </div>
-    <img src="@/assets/img/xb.jpg" alt="">
-
-    <input type="text" v-model="msg">
-    <el-button @click="copy(msg)">点击复制</el-button>
+    <el-button type="primary" @click="getCloneData">主要按钮</el-button>
+    <p>{{ $C.NAME }}</p>
+    <el-button>点击复制</el-button>
     <!--        <banner></banner>-->
   </div>
 </template>
 
 <script>
-import banner from '@/components/swipe/swipe';
+import Banner from '@/components/swipe/swipe';
 import { getA, getB } from '../pass/api2'
 
 export default {
   name: 'Home',
+  components: {
+    Banner
+  },
   data() {
     return {
-      msg: '你好黄寺大街浩丰科技大煞风景肯定会是分开较好的设计费厚大司考交话费的空间是否对会计师',
-      msg2: 123456789132456789,
-      letter: 'AbcDefG',
-      phone: 18955911468,
-      idCard: '341023199608142010',
-      arr: ['小明', '小白', '小兰', '小黄', '小紫', '小刚', '小智', '小霞', 4, 5],
-      obj: {
-        a: 1,
-        b: 2,
-      },
-      obj2: {
-        c: 3,
-        d: {
-          z: '小明'
-        }
-      },
-      obj3: {
-        e: 5,
-        f: 6
-      },
-      obj4: {}
+      cloneData: { a: 'a', b: 'b', c: ['小明', '小刚'], d: { dd: 'dd' } },
     }
+  },
+  created() {
   },
   methods: {
-
-    async getList() {
-
-    },
-
-    copy(text) {
-      this.tools.clickCopy(text)
-    },
-    async getGet() {
-      const res = await getA()
-      console.log(res)
-    },
-    async getPost() {
-      const res = await getB()
-      console.log(res)
+    getCloneData() {
+      let data = this.$tools.deepClone(this.cloneData)
+      console.log(data)
+      data.c.push(77)
     }
   },
-  mounted() {
-    console.log('清除')
-    // this.obj2 = this.tools.deepClone(this.obj)
-    this.$tools.breakArr(this.arr, 2, 2);
-    this.$tools.saveS('obj', this.arr, 2)
-    this.$tools.getS('obj')
-    this.$tools.getURL('www.baidu.com?name=1');
-    this.$refs.dv.style.backgroundColor = this.$tools.getColor(.1)
-    this.obj4 = this.$tools.combine(this.obj, this.obj2, this.obj3);
-    // console.log(this.obj4)
-    this.getGet()
-    this.getPost()
-  },
-  components: {
-    banner
-  }
 }
 </script>
 

@@ -26,6 +26,16 @@ const music = {
   getList2(params) {
     return ajax.post(`${host}/toplist`, qs.stringify(params, { arrayFormat: 'repeat' })) // 传数组需要此配置
   },
+
+  // 第三步，发送验证码
+  getSendPhoneCode(params) {
+    return ajax.post(`${host}/account/verificationCode`, qs.stringify(params), { withCredentials: true });
+  },
+
+  // 验证验证码
+  getCheckPhoneCode(params) {
+    return ajax.post(`${host}/account/checkVerifiCode`, qs.stringify(params), { withCredentials: true });
+  },
 }
 
 export default music

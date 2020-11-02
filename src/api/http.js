@@ -52,8 +52,10 @@ const errorHandle = (status, other) => {
 
 // 创建一个axios实例
 const ajax = axios.create({
-  timeout: 10000
+  timeout: 10000000000
 })
+
+ajax.defaults.withCredentials = true
 
 // 设置post请求头
 ajax.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8';
