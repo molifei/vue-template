@@ -21,7 +21,11 @@
         prop="address"
         label="地址">
     </el-table-column>
-   <slot name="operation"></slot>
+    <el-table-column label="操作">
+      <template slot-scope="scope">
+        <slot name="operation" :row="scope.row"></slot>
+      </template>
+    </el-table-column>
   </el-table>
 </template>
 

@@ -1,98 +1,19 @@
 <template>
   <div class="layout-wrap">
-    <header class="layout-header">
-      <h1>头部</h1>
-      <el-button @click="isCollapse=!isCollapse">缩小</el-button>
-    </header>
+
+    <w-header class="header-bar" height="65">
+      <img class="logo" src="@/assets/img/xb.jpg" alt="">
+      <i :class="[isCollapse?'el-icon-s-unfold':'el-icon-s-fold']" style="font-size: 20px;cursor:pointer;"
+         @click="isCollapse=!isCollapse"></i>
+    </w-header>
 
     <main class="layout-container">
-      <aside class="layout-left" :class="isCollapse?'collapse':'un-collapse'">
-        <div>
-          <p>2</p>
-          <p>2</p>
-          <p>2</p>
-          <p>2</p>
-          <p>2</p>
-          <p>2</p>
-          <p>2</p>
-          <p>2</p>
-          <p>2</p>
-          <p>2</p>
-          <p>2</p>
-          <p>2</p>
-          <p>2</p>
-          <p>2</p>
-          <p>2</p>
-          <p>2</p>
-          <p>2</p>
-          <p>2</p>
-          <p>2</p>
-          <p>2</p>
-          <p>2</p>
-          <p>2</p>
-          <p>2</p>
-          <p>2</p>
-          <p>2</p>
-          <p>2</p>
-          <p>2</p>
-          <p>2</p>
-          <p>2</p>
-          <p>2</p>
-          <p>2</p>
-          <p>2</p>
-          <p>2</p>
-          <p>2</p>
-          <p>2</p>
-          <p>2</p>
-          <p>2</p>
-          <p>2</p>
-          <p>2</p>
-          <p>2</p>
-          <p>2</p>
-          <p>2</p>
-          <p>2</p>
-          <p>2</p>
-          <p>2</p>
-          <p>2</p>
-          <p>2</p>
-          <p>2</p>
-          <p>2</p>
-          <p>2</p>
-          <p>2</p>
-          <p>2</p>
-          <p>2</p>
-          <p>2</p>
-          <p>2</p>
-          <p>2</p>
-          <p>2</p>
-          <p>2</p>
-          <p>2</p>
-          <p>2</p>
-          <p>2</p>
-          <p>2</p>
-          <p>2</p>
-          <p>2</p>
-          <p>2</p>
-          <p>2</p>
-          <p>2</p>
-          <p>2</p>
-          <p>2</p>
-          <p>2</p>
-          <p>2</p>
-          <p>2</p>
-          <p>2</p>
-          <p>2</p>
-          <p>2</p>
-          <p>2</p>
-          <p>2</p>
-          <p>2</p>
-          <p>2</p>
-          <p>2</p>
-          <p>2</p>
-          <p>2</p>
-        </div>
-      </aside>
-      <section class="layout-right">
+      <w-aside class="layout-left" :width="isCollapse? 60:200">
+
+        <w-menu :list="list" isRoute="true" height="50"></w-menu>
+
+      </w-aside>
+      <section class="layout-right scroll-bar-container">
         <router-view></router-view>
       </section>
     </main>
@@ -101,11 +22,26 @@
 </template>
 
 <script>
+
+import WHeader from '@/components/WHeader/WHeader'
+import WAside from '@/components/WAside/WAside'
+import WMenu from '@/components/WMenu/WMenu'
+
 export default {
   name: 'Layout',
+
+  components: {
+    WMenu,
+    WHeader,
+    WAside
+  },
+
   data() {
     return {
-      isCollapse: false
+      isCollapse: false,
+
+      list: this.$router.options.routes[7].children || []
+
     }
   }
 }
@@ -113,21 +49,9 @@ export default {
 
 <style scoped lang="less">
   .layout-wrap {
-    .layout-header {
-      width: 100%;
-      height: 60px;
-      position: fixed;
-      top: 0;
-      left: 0;
-      background-color: #edf8ef;
-      z-index: 999;
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
-    }
 
     .layout-container {
-      padding-top: 60px;
+      padding-top: 65px;
       display: flex;
       height: 100vh;
 
@@ -135,7 +59,6 @@ export default {
         min-height: 100%;
         background-color: #fff;
         border-right: 1px solid #eee;
-        transition: flex .5s ease-in-out;
         overflow-y: auto;
 
         &.collapse {
@@ -154,5 +77,41 @@ export default {
         overflow-y: auto;
       }
     }
+  }
+
+  .header-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 99;
+  }
+
+  .scroll-bar-container {
+    &:hover {
+      &::-webkit-scrollbar {
+        width: 6px;
+      }
+    }
+  }
+
+  .scroll-bar-container::-webkit-scrollbar {
+    width: 0;
+    transition: all 3s ease-in-out;
+  }
+
+  // 滚动的滑块
+  .scroll-bar-container::-webkit-scrollbar-thumb {
+    border-radius: 20px;
+    background-color: rgba(144, 147, 153, .3);
+  }
+
+  // 外层轨道
+  .scroll-bar-container::-webkit-scrollbar-track {
+    display: none;
+  }
+
+  .logo {
+    width: 50px;
+    height: 50px;
   }
 </style>

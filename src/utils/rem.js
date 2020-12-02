@@ -13,4 +13,4 @@ let uiWidth = 750;
       t.style.fontSize = n / d + 'px'
     };
   e.addEventListener && (n.addEventListener(o, a, !1), e.addEventListener('DOMContentLoaded', a, !1))
-}(window, 100);
+}(window, 1);

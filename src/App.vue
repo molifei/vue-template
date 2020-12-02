@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <div class="dv"></div>
     <transition name="slide" mode="out-in">
       <router-view></router-view>
     </transition>
@@ -8,8 +9,8 @@
 
 <style scoped lang="less">
   .dv {
-    width: .1rem;
-    height: .1rem;
+    width: 2rem;
+    height: 1rem;
     border: 1px solid red;
   }
 

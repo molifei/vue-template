@@ -6,16 +6,22 @@
     <router-link to="/edit" tag="a">去/edit</router-link>
     <br />
 
-    <el-button type="primary" @click="getCloneData">主要按钮</el-button>
+    <!--<el-button type="primary" @click="getCloneData">主要按钮</el-button>-->
     <p>{{ $C.NAME }}</p>
-    <el-button>点击复制</el-button>
+    <!--<el-button>点击复制</el-button>-->
     <!--        <banner></banner>-->
+    <el-button @click="startSocket">开始</el-button>
+    <el-button @click="closeSocket">关闭</el-button>
+    <el-button @click="sendSocket">发送</el-button>
+    <ul>
+      <li v-for="item in list"> {{ item }}</li>
+    </ul>
   </div>
 </template>
 
 <script>
-import Banner from '@/components/swipe/swipe';
-import { getA, getB } from '../pass/api2'
+import Banner from '@/components/Swipe/swipe';
+import Connect from '@/utils/websocketClass'
 
 export default {
   name: 'Home',
@@ -25,15 +31,31 @@ export default {
   data() {
     return {
       cloneData: { a: 'a', b: 'b', c: ['小明', '小刚'], d: { dd: 'dd' } },
+      ws: null,
+      list: []
     }
   },
   created() {
   },
+  mounted() {
+
+  },
   methods: {
-    getCloneData() {
-      let data = this.$tools.deepClone(this.cloneData)
+    startSocket() {
+      this.ws = new Connect(' ws://127.0.0.1:2600')
+      this.ws.create()
+      this.ws.msg(this.getData)
+    },
+    closeSocket() {
+      this.ws.close()
+      // this.ws = null
+    },
+    sendSocket() {
+      this.ws.send(this.cloneData)
+    },
+    getData(data) {
       console.log(data)
-      data.c.push(77)
+      this.list.unshift(JSON.parse(data.data))
     }
   },
 }
