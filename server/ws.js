@@ -1,25 +1,25 @@
-const ws = require("ws")
+const ws = require('ws')
 
 // 启动websocket服务器
 const wsServer = new ws.Server({
-  host: "127.0.0.1",
+  host: '127.0.0.1',
   port: 2600
 });
 
-console.log("WebSocket server is listening at http://127.0.0.1:2600")
+console.log('WebSocket server is listening at http://127.0.0.1:2600')
 
 // 建立连接
 function on_server_client_comming(wsObj) {
-  console.log("request comming")
+  console.log('request comming')
   websocket_add_listener(wsObj)
 }
 
-wsServer.on("connection", on_server_client_comming)
+wsServer.on('connection', on_server_client_comming)
 
 // 事件处理逻辑
-const websocket_add_listener = function (wsObj) {
+const websocket_add_listener = function(wsObj) {
   let i = 0;
-  wsObj.on("message", data => {
+  wsObj.on('message', data => {
     console.log(`request data:${data}`)
     // setTimeout(() => {
     //     wsObj.send("1秒延迟之后，收到，处理中")
@@ -35,15 +35,15 @@ const websocket_add_listener = function (wsObj) {
     setTimeout(() => {
       i++;
       wsObj.send(`第${i}次`)
-    },1)
+    }, 1)
   })
 
-  wsObj.on("close", function () {
-    console.log("request close")
+  wsObj.on('close', function() {
+    console.log('request close')
   })
 
-  wsObj.on("error", err => {
-    console.log("request error", err)
+  wsObj.on('error', err => {
+    console.log('request error', err)
   })
 
 }

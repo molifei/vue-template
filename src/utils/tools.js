@@ -6,7 +6,7 @@ let _this = Vue.prototype;
 let tools = {};
 
 // 测试
-tools.test = function() {
+tools.test = function () {
   console.log('utils is ok')
 };
 
@@ -17,7 +17,7 @@ tools.test = function() {
  * @param {Any} data    想判断类型的数据
  * @return {String}     返回数据类型
  */
-tools.getType = function(data) {
+tools.getType = function (data) {
   // data = "你好 小明"
   // let reg = / ^\s]$/gi;
   // console.log(data.match(reg));
@@ -34,12 +34,12 @@ tools.getType = function(data) {
  * @param {Boolean} immediate   是否立即执行函数
  * @return {Function}     返回执行函数
  */
-tools.debounce = function(func, wait, immediate) {
+tools.debounce = function (func, wait, immediate) {
   if (!typeof func === 'function' && !typeof wait === 'number' && !typeof immediate === 'boolean') throw new Error('error:Wrong arguments type');
 
   var timeout, result;
 
-  var debounced = function() {
+  var debounced = function () {
     var context = this;
     var args = arguments;
 
@@ -47,19 +47,19 @@ tools.debounce = function(func, wait, immediate) {
     if (immediate) {
       // 如果已经执行过，不再执行
       var callNow = !timeout;
-      timeout = setTimeout(function() {
+      timeout = setTimeout(function () {
         timeout = null;
       }, wait);
       if (callNow) result = func.apply(context, args);
     } else {
-      timeout = setTimeout(function() {
+      timeout = setTimeout(function () {
         func.apply(context, args);
       }, wait);
     }
     return result;
   };
 
-  debounced.cancel = function() {
+  debounced.cancel = function () {
     clearTimeout(timeout);
     timeout = null;
   };
@@ -78,7 +78,7 @@ tools.debounce = function(func, wait, immediate) {
  *         railing: false 表示禁用停止触发的回调
  * @return {Function}     返回执行函数
  */
-tools.throttle = function(func, wait, options) {
+tools.throttle = function (func, wait, options) {
   console.log(func);
 
   if (!typeof func === 'function' && !typeof wait === 'number' && !(typeof options) === Object) throw new Error('error:Wrong arguments type');
@@ -87,14 +87,14 @@ tools.throttle = function(func, wait, options) {
   var previous = 0;
   if (!options) options = {};
 
-  var later = function() {
+  var later = function () {
     previous = options.leading === false ? 0 : new Date().getTime();
     timeout = null;
     func.apply(context, args);
     if (!timeout) context = args = null;
   };
 
-  var throttled = function() {
+  var throttled = function () {
     var now = new Date().getTime();
     if (!previous && options.leading === false) previous = now;
     var remaining = wait - (now - previous);
@@ -130,7 +130,7 @@ tools.throttle = function(func, wait, options) {
  * @param {Array}   arr     需要去重的数组
  * @return {Array}          已经去重的数组
  */
-tools.removeRepeat = function(arr) {
+tools.removeRepeat = function (arr) {
   if (!Array.isArray(arr)) throw new Error('type error:argument must be a Array');
 
   // console.log(arr);
@@ -148,7 +148,7 @@ tools.removeRepeat = function(arr) {
  * @param {String}  url     需解析的url地址，如不传，默认解析当前地址
  * @return {Object}         返回解析出的对象
  */
-tools.getURL = function(url) {
+tools.getURL = function (url) {
   if (arguments.length === 0) {
     url = window.location.href;
   }
@@ -166,7 +166,7 @@ tools.getURL = function(url) {
   //     let v = parse[i].split("=");
   //     target[v[0]] = v[1]
   // }
-  return parse.reduce((prev, item,) => {
+  return parse.reduce((prev, item, ) => {
     let sli = item.split('=');
     prev[sli[0]] = sli[1];
     return prev;
@@ -180,7 +180,7 @@ tools.getURL = function(url) {
  * @param {Array / Object}  data    需要深拷贝的数组或者对象
  * @return {Array / Object}         返回相应的数组或者对象
  */
-tools.deepClone = function(data) {
+tools.deepClone = function (data) {
   // 判断传入参数类型
   let type = this.getType(data);
   if (type !== 'Object' && type !== 'Array') {
@@ -212,18 +212,18 @@ tools.deepClone = function(data) {
  * @param {Number}   num     对应的要几个或者要几组
  * @return {Array}          返回分割完毕的数组
  */
-tools.breakArr = function(arr, type = 1, num = 1) {
+tools.breakArr = function (arr, type = 1, num = 1) {
   // 判断参数类型
   if (this.getType(arr) !== 'Array') throw new Error('请传入一个数组');
   // 报错处理
   switch (type) {
-  case 1:
-    if (num > len) throw new Error('单个数组长度超过原数组长度');
-    break;
-  case 2:
-    // 若是子数组的个数 > 原数组长度，报错
-    if (num > len) throw new Error(`最少分为${len}组`);
-    break;
+    case 1:
+      if (num > len) throw new Error('单个数组长度超过原数组长度');
+      break;
+    case 2:
+      // 若是子数组的个数 > 原数组长度，报错
+      if (num > len) throw new Error(`最少分为${len}组`);
+      break;
   }
 
   let len = arr.length;
@@ -279,18 +279,18 @@ tools.breakArr = function(arr, type = 1, num = 1) {
 
 // 判断是否支持storage
 function isSupport(type) {
-  if (arguments.length === 0) throw  new Error('请传入参数，以便判断浏览器是否支持web存储');
+  if (arguments.length === 0) throw new Error('请传入参数，以便判断浏览器是否支持web存储');
   switch (type) {
-  case 1:
-    if (!window.localStorage) {
-      throw  new Error('浏览器不支持localStorage');
-    }
-    break;
-  case 2:
-    if (!window.sessionStorage) {
-      throw  new Error('浏览器不支持sessionStorage');
-    }
-    break;
+    case 1:
+      if (!window.localStorage) {
+        throw new Error('浏览器不支持localStorage');
+      }
+      break;
+    case 2:
+      if (!window.sessionStorage) {
+        throw new Error('浏览器不支持sessionStorage');
+      }
+      break;
   }
 }
 
@@ -298,12 +298,12 @@ function isSupport(type) {
 function sType(type = 1) {
   let store;
   switch (type) {
-  case 1:
-    store = window.localStorage;
-    break;
-  case 2:
-    store = window.sessionStorage;
-    break;
+    case 1:
+      store = window.localStorage;
+      break;
+    case 2:
+      store = window.sessionStorage;
+      break;
   }
   return store;
 }
@@ -317,7 +317,7 @@ function sType(type = 1) {
  * @param {Number}      type      存在哪里，默认local
  * @return {}
  */
-tools.saveS = function(key, value, type = 1) {
+tools.saveS = function (key, value, type = 1) {
   // 判断浏览器是否支持存储
   isSupport(type);
 
@@ -327,17 +327,17 @@ tools.saveS = function(key, value, type = 1) {
   let store = sType(type);
 
   switch (type) {
-  case 1:
-    store.setItem(key, value);
-    break;
-  case 2:
-    store.setItem(key, value);
-    break;
+    case 1:
+      store.setItem(key, value);
+      break;
+    case 2:
+      store.setItem(key, value);
+      break;
   }
 };
 
 // 取
-tools.getS = function(key, type = 1) {
+tools.getS = function (key, type = 1) {
   let store = sType(type);
   try {
     return JSON.parse(store.getItem(key));
@@ -351,13 +351,13 @@ tools.getS = function(key, type = 1) {
 };
 
 // 删
-tools.delS = function(key, type = 1) {
+tools.delS = function (key, type = 1) {
   let store = sType(type);
   store.removeItem(key);
 };
 
 // 全删
-tools.delA = function(type = 1) {
+tools.delA = function (type = 1) {
   let store = sType(type);
   store.clear();
 };
@@ -369,7 +369,7 @@ tools.delA = function(type = 1) {
  * @param {String}  value   需转义的字符串
  * @return {String}         返回转义完毕的字符串
  */
-tools.entities = function(value) {
+tools.entities = function (value) {
   let list = {
     '\'': '&#39;',
     '"': '&quot;',
@@ -389,7 +389,7 @@ tools.entities = function(value) {
  * @date 2020.04.20
  * @return {Boolean}         表示是否
  */
-tools.isIos = function() {
+tools.isIos = function () {
   let u = navigator.userAgent;
   if (u.indexOf('Android') > -1 || u.indexOf('Linux') > -1) { // 安卓手机
     // return "Android";
@@ -414,7 +414,7 @@ tools.isIos = function() {
  * @date 2020.04.20
  * @return {Boolean}         表示是否
  */
-tools.isPC = function() {
+tools.isPC = function () {
   let userAgentInfo = navigator.userAgent,
     Agents = ['Android', 'iPhone', 'SymbianOS', 'Windows Phone', 'iPad', 'iPod'],
     flag = true;
@@ -433,7 +433,7 @@ tools.isPC = function() {
  * @date 2020.04.20
  * @return {Boolean}         表示是否
  */
-tools.browserType = function() {
+tools.browserType = function () {
   let userAgent = navigator.userAgent, // 取得浏览器的userAgent字符串
     isOpera = userAgent.indexOf('Opera') > -1, // 判断是否Opera浏览器
     isIE = userAgent.indexOf('compatible') > -1 && userAgent.indexOf('MSIE') > -1 && !isOpera, // 判断是否IE浏览器
@@ -451,7 +451,7 @@ tools.browserType = function() {
     else if (fIEVersion === 8) return 'IE8';
     else if (fIEVersion === 9) return 'IE9';
     else if (fIEVersion === 10) return 'IE10';
-    else return 'IE7以下';// IE版本过低
+    else return 'IE7以下'; // IE版本过低
   }
   if (isIE11) return 'IE11';
   if (isEdge) return 'Edge';
@@ -469,7 +469,7 @@ tools.browserType = function() {
  * @param {Number}  max   最大值
  * @return {Boolean}         表示是否
  */
-tools.getRandom = function(min, max) {
+tools.getRandom = function (min, max) {
   min = Math.ceil(min);
   max = Math.floor(max);
   return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -482,7 +482,7 @@ tools.getRandom = function(min, max) {
  * @param {Number}  opacity   不透明度，默认1，取值 0 to 1
  * @return {Boolean}         表示是否
  */
-tools.getColor = function(opacity = 1) {
+tools.getColor = function (opacity = 1) {
   return `rgba(${tools.getRandom(0, 255)},${tools.getRandom(0, 255)},${tools.getRandom(0, 255)},${opacity})`;
 };
 
@@ -494,7 +494,7 @@ tools.getColor = function(opacity = 1) {
  * @param {String}  connector  连接符，默认 -
  * @return {String}       转化之后的字符
  */
-tools.toName = function(val, connector = '-') {
+tools.toName = function (val, connector = '-') {
   // 类型检测
   if (this.getType(val) !== 'String' && this.getType(connector) !== 'String') throw new Error('传入参数需为字符串');
 
@@ -510,7 +510,7 @@ tools.toName = function(val, connector = '-') {
  * @param {String}  connector  连接符，默认 -
  * @return {String}       转化之后的字符
  */
-tools.toHump = function(val, connector = '-') {
+tools.toHump = function (val, connector = '-') {
   // 类型检测
   if (this.getType(val) !== 'String') throw new Error('传入参数需为字符串');
 
@@ -546,24 +546,24 @@ tools.toHump = function(val, connector = '-') {
  * @param {Boolean}  immediate  当val是数字时，得出的值是否转化为数字，默认转化  123,2 ===》 123123 ,"小明"，3 === 》"小明小明小明"
  * @return {String}       转化之后的字符
  */
-tools.repeat = function(val, n, immediate = true) {
+tools.repeat = function (val, n, immediate = true) {
   // 类型检测
   if (this.getType(val) !== 'String' && this.getType(val) !== 'Number' && this.getType(n) !== 'Number') throw new Error('参数应为字符串或者数字');
 
   let str = '';
   switch (this.getType(val)) {
-  case 'String':
-    for (let i = 0; i < n; i++) {
-      str += val;
-    }
-    break;
-  case 'Number':
-    val += '';
-    for (let i = 0; i < n; i++) {
-      str += val;
-    }
-    str = immediate ? parseInt(str) : str;
-    break;
+    case 'String':
+      for (let i = 0; i < n; i++) {
+        str += val;
+      }
+      break;
+    case 'Number':
+      val += '';
+      for (let i = 0; i < n; i++) {
+        str += val;
+      }
+      str = immediate ? parseInt(str) : str;
+      break;
   }
   return str;
 };
@@ -574,17 +574,17 @@ tools.repeat = function(val, n, immediate = true) {
  * @date 2020.04.20
  * @return {void}
  */
-tools.toFullScreen = function() {
+tools.toFullScreen = function () {
   let elem = document.body;
   elem.webkitRequestFullScreen ?
     elem.webkitRequestFullScreen() :
     elem.mozRequestFullScreen ?
-      elem.mozRequestFullScreen() :
-      elem.msRequestFullscreen ?
-        elem.msRequestFullscreen() :
-        elem.requestFullScreen ?
-          elem.requestFullScreen() :
-          alert('浏览器不支持全屏');
+    elem.mozRequestFullScreen() :
+    elem.msRequestFullscreen ?
+    elem.msRequestFullscreen() :
+    elem.requestFullScreen ?
+    elem.requestFullScreen() :
+    alert('浏览器不支持全屏');
 };
 
 /*
@@ -593,19 +593,19 @@ tools.toFullScreen = function() {
  * @date 2020.04.20
  * @return {void}
  */
-tools.exitFullscreen = function() {
+tools.exitFullscreen = function () {
   let elem = parent.document;
   elem.webkitCancelFullScreen ?
     elem.webkitCancelFullScreen() :
     elem.mozCancelFullScreen ?
-      elem.mozCancelFullScreen() :
-      elem.cancelFullScreen ?
-        elem.cancelFullScreen() :
-        elem.msExitFullscreen ?
-          elem.msExitFullscreen() :
-          elem.exitFullscreen ?
-            elem.exitFullscreen() :
-            alert('切换失败,可尝试Esc退出');
+    elem.mozCancelFullScreen() :
+    elem.cancelFullScreen ?
+    elem.cancelFullScreen() :
+    elem.msExitFullscreen ?
+    elem.msExitFullscreen() :
+    elem.exitFullscreen ?
+    elem.exitFullscreen() :
+    alert('切换失败,可尝试Esc退出');
 };
 
 /*
@@ -615,7 +615,7 @@ tools.exitFullscreen = function() {
  * @param {Object}      传入想要合并的对象
  * @return {Object}     返回合并完毕的对象
  */
-tools.combine = function(...args) {
+tools.combine = function (...args) {
   // console.log(args)
   return args.reduce((prev, item) => {
     item = tools.deepClone(item);
@@ -636,7 +636,7 @@ tools.combine = function(...args) {
  * @param {Function}    cb          滚动后的回调函数
  * @return {void}
  */
-tools.scrollTo = function(target, speed, cb) {
+tools.scrollTo = function (target, speed, cb) {
   let offset = window.scrollY;
   speed = speed || 50;
   const isScrollUp = target <= offset;
@@ -662,7 +662,7 @@ tools.scrollTo = function(target, speed, cb) {
  * @param {}
  * @return {Object}     {x: 0, y: 200}
  */
-tools.getScroll = function(el = window) {
+tools.getScroll = function (el = window) {
   return {
     x: el.pageXOffset !== undefined ? el.pageXOffset : el.scrollLeft,
     y: el.pageYOffset !== undefined ? el.pageYOffset : el.scrollTop
@@ -676,7 +676,7 @@ tools.getScroll = function(el = window) {
  * @param {Any}     text    复制的文本
  * @return {void}
  */
-tools.clickCopy = function(text) {
+tools.clickCopy = function (text) {
   const copyFrom = document.createElement('textarea');
   const body = document.getElementsByTagName('body')[0];
   copyFrom.textContent = text;
@@ -694,7 +694,7 @@ tools.clickCopy = function(text) {
  * @param {String}  str     需要删除的字符串
  * @return {void}
  */
-tools.stripHTMLTags = function(str) {
+tools.stripHTMLTags = function (str) {
   return str.replace(/<[^>]*>/g, '');
 }
 
@@ -705,7 +705,7 @@ tools.stripHTMLTags = function(str) {
  * @param {String}  tagName 标签名，类名等
  * @return {void}
  */
-tools.hideTag = function(tagName) {
+tools.hideTag = function (tagName) {
   document.querySelectorAll(tagName).forEach(e => e.style.display = 'none')
 }
 
@@ -716,8 +716,8 @@ tools.hideTag = function(tagName) {
  * @param {String}      str
  * @return {base64}
  */
-tools.strToBase64 = function(str) {
-// 对字符串进行编码
+tools.strToBase64 = function (str) {
+  // 对字符串进行编码
   let encode = encodeURI(str);
   // 对编码的字符串转化base64
   let base64 = btoa(encode);
@@ -731,15 +731,18 @@ tools.strToBase64 = function(str) {
  * @param {String}      url     图片地址
  * @return {base64}
  */
-tools.imgToBase64 = function(url) {
+tools.imgToBase64 = function (url) {
+  console.log(url.src)
   let canvas = document.createElement('canvas');
-  canvas.width = url.width;
-  canvas.height = url.height;
+  canvas.width = url.width || 300;
+  canvas.height = url.height || 300;
   let ctx = canvas.getContext('2d');
   ctx.drawImage(url, 0, 0, url.width, url.height);
   let ext = url.src.substring(url.src.lastIndexOf('.') + 1).toLowerCase();
-  let dataURL = canvas.toDataURL('image/' + ext);
-  return dataURL;
+  if (ext === 'jpg') {
+    return canvas.toDataURL('image/jpeg');
+  }
+  return canvas.toDataURL('image/' + ext);
 };
 
 /*
@@ -749,7 +752,7 @@ tools.imgToBase64 = function(url) {
  * @param {data}    data    base64码
  * @return {}
  */
-tools.base64Decode = function(data) {
+tools.base64Decode = function (data) {
   var b64 = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
   var o1,
     o2,
@@ -796,7 +799,7 @@ tools.base64Decode = function(data) {
  * @param {String}      s       css代码
  * @return {}
  */
-tools.compressCss = function(s) {
+tools.compressCss = function (s) {
   // 压缩代码
   s = s.replace(/\/\*(.|\n)*?\*\//g, ''); // 删除注释
   s = s.replace(/\s*([\{\}\:\;\,])\s*/g, '$1');
@@ -815,15 +818,14 @@ tools.compressCss = function(s) {
  */
 
 // eslint-disable-next-line no-unused-vars
-tools.getUrlState = function(URL) {
+tools.getUrlState = function (URL) {
   // eslint-disable-next-line no-undef
   var xmlhttp = new ActiveXObject('microsoft.xmlhttp');
   xmlhttp.Open('GET', URL, false);
   try {
     xmlhttp.Send();
     // eslint-disable-next-line no-empty
-  } catch (e) {
-  } finally {
+  } catch (e) {} finally {
     var result = xmlhttp.responseText;
     if (result) {
       // eslint-disable-next-line no-unsafe-finally
@@ -842,8 +844,8 @@ tools.getUrlState = function(URL) {
  * @param {}
  * @return {Boolean}
  */
-tools.power = function() {
-  setTimeout(function() {
+tools.power = function () {
+  setTimeout(function () {
     let t = performance.timing;
     console.log('DNS查询耗时 ：' + (t.domainLookupEnd - t.domainLookupStart).toFixed(0));
     console.log('TCP链接耗时 ：' + (t.connectEnd - t.connectStart).toFixed(0));
@@ -869,7 +871,7 @@ tools.power = function() {
  * @return {Array}  筛选完毕的数组
  */
 // eslint-disable-next-line no-unused-vars
-tools.screenArr = function(objArr, arr, key = 'id') {
+tools.screenArr = function (objArr, arr, key = 'id') {
   return objArr.filter(item => {
     return arr.indexOf(item[key]) !== -1;
   });
@@ -885,7 +887,7 @@ tools.screenArr = function(objArr, arr, key = 'id') {
  * @return {Array}  筛选完毕的数组
  */
 // eslint-disable-next-line no-unused-vars
-tools.removeArr = function(objArr, arr, key = 'id') {
+tools.removeArr = function (objArr, arr, key = 'id') {
   return objArr.filter(item => {
     return arr.indexOf(item[key]) === -1;
   });
@@ -899,7 +901,7 @@ tools.removeArr = function(objArr, arr, key = 'id') {
  * @param {String}   str     关键词，有相同内容的属性
  * @return {Array}  合并之后的对象数组
  */
-tools.alikeMerge = function(data, str) {
+tools.alikeMerge = function (data, str) {
   // 存储数组：存储已经遍历过的id
   let tempArr = [];
   // 返回数组：将要返回的数组
@@ -935,13 +937,13 @@ tools.alikeMerge = function(data, str) {
  * @param {String} par 父项的判断字段
  * @return {Array} 返回拼接完毕的数组
  */
-tools.splitTree = function(data, son, par) {
+tools.splitTree = function (data, son, par) {
   // 需要返回拼接完毕的数组
   let results = [];
 
   // 存储以子项判断字段为索引的对象
   let map = {};
-  data.forEach(function(mapItem) {
+  data.forEach(function (mapItem) {
     map[mapItem[son]] = mapItem;
   });
   // console.log(map);
@@ -972,7 +974,7 @@ tools.splitTree = function(data, son, par) {
  * @param {}
  * @return {}
  */
-tools.getOneChinese = function() {
+tools.getOneChinese = function () {
   let _rsl = '';
   let _randomUniCode = Math.floor(Math.random() * (40870 - 19968) + 19968).toString(16);
   eval('_rsl=' + '"\\u' + _randomUniCode + '"');
@@ -987,7 +989,7 @@ tools.getOneChinese = function() {
  * @param {Number}  max  最多几位
  * @return {}
  */
-tools.getRandomChinese = function(min, max) {
+tools.getRandomChinese = function (min, max) {
   let arr = new Array(this.getRandom(min, max)).fill(1);
   let str = '';
   arr.map(item => {
@@ -1005,7 +1007,7 @@ tools.getRandomChinese = function(min, max) {
  * @param {Number}  expire  过期时间(天数) 0为不过期
  * @return {void}
  */
-tools.saveCookie = function(name, val, expire) {
+tools.saveCookie = function (name, val, expire) {
   let cookieString = name + '=' + escape(val);
 
   // 判断是否设置了过期时间
@@ -1025,7 +1027,7 @@ tools.saveCookie = function(name, val, expire) {
  * @param {name}  要取出的cookie名称
  * @return {String} cookie值
  */
-tools.getCookie = function(name) {
+tools.getCookie = function (name) {
   let cookiesList = window.document.cookie.split('; ');
   let a = cookiesList.filter(item => {
     return item.split('=')[0] === name;
@@ -1042,7 +1044,7 @@ tools.getCookie = function(name) {
  * @param {String / Array}  name  要删除的cookie们，可传一个字符串或者多个[数组形式]
  * @return {void}
  */
-tools.delCookie = function(name) {
+tools.delCookie = function (name) {
   let date = new Date();
   date.setTime(date.getTime() - 100000000);
   if (this.getType(name) === 'String') {
@@ -1062,9 +1064,9 @@ tools.delCookie = function(name) {
  * @param {String}   key 去重关键字
  * @return {Array}  去重完毕的数组
  */
-tools.accordRemoveRepeat = function(dataArr, key) {
+tools.accordRemoveRepeat = function (dataArr, key) {
   let tar = [];
-  tar = dataArr.reduce(function(arr, current) {
+  tar = dataArr.reduce(function (arr, current) {
     tar[current[key]] ? '' : tar[current[key]] = true && arr.push(current);
     return arr;
   }, []);
@@ -1081,7 +1083,7 @@ tools.accordRemoveRepeat = function(dataArr, key) {
  * @param {String}   count 计数字段
  * @return {Array}  去重完毕的数组
  */
-tools.accordRemoveRepeatCount = function(dataArr, key, count) {
+tools.accordRemoveRepeatCount = function (dataArr, key, count) {
   return dataArr.reduce((obj, item) => {
     let find = obj.find(i => i[key] === item[key]);
     let _d = {
@@ -1102,7 +1104,7 @@ tools.accordRemoveRepeatCount = function(dataArr, key, count) {
  * @param {Any} val 查找的值
  * @return {Object} 筛选出来的项以及索引
  */
-tools.findLast = function(objectArray, key, val) {
+tools.findLast = function (objectArray, key, val) {
   if (this.getType(objectArray) !== 'Array') throw new Error('需传入数组')
 
   let tar = {};
@@ -1131,7 +1133,7 @@ tools.findLast = function(objectArray, key, val) {
  * @param {Function}  options.success 请求成功之后的回调函数
  * @return {void}
  */
-tools.getJsonp = function(options) {
+tools.getJsonp = function (options) {
   // 创建script标签
   let script = document.createElement('script')
 
@@ -1139,7 +1141,7 @@ tools.getJsonp = function(options) {
   let functionName = 'cb' + new Date().getTime() + this.getRandom(0, 100000)
 
   // 函数调用，请求回来的值给成功回调函数
-  window[functionName] = function(result) {
+  window[functionName] = function (result) {
     options.success(result)
   }
 
@@ -1158,13 +1160,13 @@ tools.getJsonp = function(options) {
   // 将script标签插入html
   document.body.appendChild(script)
 
-  script.onload = function(e) {
+  script.onload = function (e) {
     // 删除标签
     e.currentTarget.remove()
     delete window[functionName]
   }
 
-  script.onerror = function(e) {
+  script.onerror = function (e) {
     console.log('jsonp fail')
     e.currentTarget.remove()
     delete window[functionName]
@@ -1178,7 +1180,7 @@ tools.getJsonp = function(options) {
  * @param {Object}  obj 需判断的对象
  * @return {Boolean}  false为空,true不为空
  */
-tools.isEmptyObject = function(obj) {
+tools.isEmptyObject = function (obj) {
   return Object.keys(obj).length !== 0
 }
 
@@ -1190,7 +1192,7 @@ tools.isEmptyObject = function(obj) {
  * @param {String} key  关键字，默认为id
  * @return {Array}  ids 返回的数组集合
  */
-tools.getIds = function(data, key = 'id') {
+tools.getIds = function (data, key = 'id') {
   let ids = []
   data.forEach(item => {
     ids.push(item[key])
@@ -1205,7 +1207,7 @@ tools.getIds = function(data, key = 'id') {
  * @param {Object} data 需要判断的对象
  * @return {Boolean}  是否为空  true为空
  */
-tools.isEmpty = function(data) {
+tools.isEmpty = function (data) {
   return (Object.keys(data)).length === 0;
 }
 
@@ -1216,7 +1218,7 @@ tools.isEmpty = function(data) {
  * @param {}
  * @return {}
  */
-tools.base64 = function() {
+tools.base64 = function () {
 
   let target = {}
 
@@ -1224,7 +1226,7 @@ tools.base64 = function() {
   let _keyStr = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
 
   // public method for encoding
-  target.encode = function(input) {
+  target.encode = function (input) {
     var output = '';
     var chr1, chr2, chr3, enc1, enc2, enc3, enc4;
     var i = 0;
@@ -1250,7 +1252,7 @@ tools.base64 = function() {
   }
 
   // public method for decoding
-  target.decode = function(input) {
+  target.decode = function (input) {
     var output = '';
     var chr1, chr2, chr3;
     var enc1, enc2, enc3, enc4;
@@ -1277,7 +1279,7 @@ tools.base64 = function() {
   }
 
   // private method for UTF-8 encoding
-  var _utf8_encode = function(string) {
+  var _utf8_encode = function (string) {
     string = string.replace(/\r\n/g, '\n');
     var utftext = '';
     for (var n = 0; n < string.length; n++) {
@@ -1298,7 +1300,7 @@ tools.base64 = function() {
   }
 
   // private method for UTF-8 decoding
-  var _utf8_decode = function(utftext) {
+  var _utf8_decode = function (utftext) {
     var string = '';
     var i = 0;
     var c = c1 = c2 = 0;
@@ -1323,5 +1325,39 @@ tools.base64 = function() {
 
   return target
 }
+
+/*
+ * @desc 数组展平
+ * @author WYK
+ * @date 2020-12-23 11:13:35
+ * @param {Array} 多维数组
+ * @return {Array}  一维数组
+ */
+tools.flattenArray = function (array) {
+  let reducer = (prev, tar) => prev.concat(Array.isArray(tar) ? tar.reduce(reducer, []) : tar)
+
+  return array.reduce(reducer, [])
+}
+
+/*
+ * @desc 利用reduce根据关键字进行分组
+ * @author WYK
+ * @date 2020-12-28 15:56:17
+ * @param {Array} data  要进行分组的数组
+ * @param {String} key  关键字
+ * @return {Object} 分完组的数据
+ */
+tools.groupByKey = function (data, keyName) {
+  return data.reduce((prev, tar) => {
+    let key = tar[keyName];
+    if (!prev[key]) {
+      prev[key] = [];
+    }
+
+    prev[key].push(tar);
+
+    return prev;
+  }, {});
+};
 
 export default tools;

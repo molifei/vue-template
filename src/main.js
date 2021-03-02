@@ -47,13 +47,17 @@ import {
   Notification,
   Table,
   TableColumn,
+  Upload,
+  MessageBox
 } from 'element-ui'
 
 Vue.use(Button)
 Vue.use(Table)
 Vue.use(TableColumn)
+Vue.use(Upload)
 Vue.prototype.$message = Message
 Vue.prototype.$notify = Notification;
+Vue.prototype.$confirm = MessageBox.confirm;
 Vue.use(vueLazyLoad, {
   error: require('@/assets/img/error.jpg'),
   loading: require('@/assets/img/load4.gif')

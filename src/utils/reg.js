@@ -45,4 +45,6 @@ reg.regNum = /^\d{1,}$/
 // 匹配字母加数字
 reg.regLetterAndNumber = /^[A-Za-z0-9]+$/
 
+reg.regMoney = /(^[1-9]([0-9]+)?(\.[0-9]{1,2})?$)|(^(0){1}$)|(^[0-9]\.[0-9]([0-9])?$)/
+
 export default reg;
