@@ -15,7 +15,7 @@
     "animate.css": "^3.7.2",
     "autoprefixer": "^9.8.5",
     "awe-dnd": "^0.3.4",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "body-parser": "^1.19.0",
     "core-js": "^3.6.4",
     "echarts": "^4.7.0",
