@@ -1,5 +1,11 @@
 <template>
   <div>
+    <el-checkbox-group v-model="tableCheck" @change="tableChange">
+      <el-checkbox-button v-for="item in originTableHead" :label="item" :key="item" :checked="item.isShow">
+        {{item.label}}
+      </el-checkbox-button>
+    </el-checkbox-group>
+
     <rule-table
         :tableLoading.sync="tableLoading"
         :tableHead="tableHead"
@@ -29,6 +35,8 @@ export default {
   data() {
     return {
       tableLoading: false,
+
+      tableCheck: [],
 
       originTableHead: [
         {
@@ -124,9 +132,33 @@ export default {
     }
   },
   methods: {
+    tableChange(value) {
+
+      let changeTable = [];
+
+      // 筛选出对于多选框项 对应的表单头数据
+      for (let i = 0; i < value.length; i++) {
+        for (let j = 0; j < this.originTableHead.length; j++) {
+          if (value[i].label === this.originTableHead[j].label) {
+            changeTable.push(this.originTableHead[j]);
+            break;
+          }
+        }
+      }
+
+      // 根据id排序
+      changeTable.sort(function(a, b) {
+        return a.id - b.id;
+      });
+
+      this.tableHead = changeTable;
+    },
+
     edit(value) {
-      console.log(value)
-    }
+
+
+    },
+
   },
 
 }

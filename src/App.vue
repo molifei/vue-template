@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <div class="dv"></div>
+    <!--<div class="dv"></div>-->
     <transition name="slide" mode="out-in">
       <router-view></router-view>
     </transition>

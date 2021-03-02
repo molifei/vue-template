@@ -105,29 +105,10 @@ export default {
       });
     },
 
-    // 填充数据
-    newTableData() {
-      let t = this.$tools.deepClone(this.tableData);
-      if (t.length === 0) {
-        return t;
-      }
-      while (t.length < 30) {
-        t.push([]);
-      }
-      return t;
-    },
     index() { // 序号计算
       return 30 * (this.currentPage - 1) + 1;
     },
-    ids() {
-      let t = _.cloneDeep(this.isCheckedList);
-      let ids = [];
-      t.forEach(item => {
-        ids.push(item.id);
-      });
-      // console.log(ids)
-      return ids;
-    },
+
   },
 
   watch: {

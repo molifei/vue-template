@@ -48,13 +48,19 @@ import {
   Table,
   TableColumn,
   Upload,
-  MessageBox
+  MessageBox,
+  Checkbox,
+  CheckboxButton,
+  CheckboxGroup,
 } from 'element-ui'
 
 Vue.use(Button)
 Vue.use(Table)
 Vue.use(TableColumn)
 Vue.use(Upload)
+Vue.use(Checkbox)
+Vue.use(CheckboxButton)
+Vue.use(CheckboxGroup)
 Vue.prototype.$message = Message
 Vue.prototype.$notify = Notification;
 Vue.prototype.$confirm = MessageBox.confirm;
