@@ -5,9 +5,10 @@ module.exports = {
   },
   extends: [
     'plugin:vue/essential',
-    'eslint:recommended'
+    'eslint:recommended',
+    'standard'
   ],
-  plugins: ['html'],
+  parser: 'vue-eslint-parser',
   parserOptions: {
     'ecmaVersion': 6,
     'sourceType': 'module',
@@ -19,7 +20,7 @@ module.exports = {
     'indent': [2, 2], // 两个空格的缩进
     'quotes': [2, 'single'], // js必须使用单引号
     'linebreak-style': [0, 'error', 'windows'], //允许windows开发环境
-    // 'semi': [2, 'always'], // 语句强制分号结尾
+    'semi': [2, 'always'], // 语句强制分号结尾
     'no-console': [0], // 不允许console语句
     'no-unused-vars': [1], // 声明了变量但是没有使用检测
     'space-unary-ops': [1, { 'words': true, 'nonwords': false }], // 一元运算符的前/后要不要加空格
@@ -43,7 +44,7 @@ module.exports = {
     'max-params': [2, 5], // 函数最多只能有5个参数
     'max-statements': [1, 80],  // 单个函数最多80条语句
     'no-array-constructor': [2], // 禁止使用数组构造器
-    'no-lonely-if': 2, // // 禁止else语句内只有if语句
+    'no-lonely-if': 0, // // 禁止else语句内只有if语句
     'no-multiple-empty-lines': [2, { 'max': 3, 'maxEOF': 1 }], // 空行最多不能超过2行
     'no-nested-ternary': 2,  // 不使用嵌套的三元表达式
     'no-spaced-func': 2, // 函数调用时 函数名与()之间不能有空格
@@ -68,12 +69,21 @@ module.exports = {
     'space-in-parens': [2, 'never'], // 小括号里面要不要有空格
     'spaced-comment': [1, 'always',
       {
-        'exceptions': ['-', '*', '+']
-      }], // 注释风格要不要有空格什么的
+        'exceptions': ['-', '*', '+', '!'],
+      },], // 注释风格要不要有空格什么的
     'arrow-parens': 0,
     // allow async-await
     'generator-star-spacing': 0,
     // allow debugger during development
-    'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0
+    'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0,
+    'vue/no-parsing-error': [2, {
+      'x-invalid-end-tag': false
+    }], // <template>下面不允许解析错误
+    'no-irregular-whitespace': 0,
+    'import/no-duplicates': 0,
+    'vue/no-duplicate-attributes': 0, // 不允许重复的attributes
+    'vue/no-template-key': 0, // <template>不允许key属性
+    'vue/no-textarea-mustache': 0,
+    'vue/no-unused-vars': 0,
   },
-}
+};
