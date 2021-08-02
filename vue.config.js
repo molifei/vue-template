@@ -38,31 +38,46 @@ module.exports = {
         args[0].title = '';
         return args;
       });
-    if (process.env.NODE_ENV === 'production') {
-      config.module
-        .rule('images')
-        .use('image-webpack-loader').loader('image-webpack-loader').tap(() => {
-          return {
-            mozjpeg: {
-              progressive: true
-            },
-            // optipng.enabled: false will disable optipng
-            optipng: {
-              enabled: false
-            },
-            pngquant: {
-              quality: [0.65, 0.90],
-              speed: 4
-            },
-            gifsicle: {
-              interlaced: false
-            }
-          // webp: {
-          //   quality: 75
+    config
+      .plugin('webpack-bundle-analyzer')
+      .use(require('webpack-bundle-analyzer').BundleAnalyzerPlugin);
+    // 忽略/moment/locale下的所有的文件
+    config
+      .plugin('ignore')
+      .use(new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/));
+
+    // 使用webpack4新特性来拆分代码
+    config
+      .optimization
+      .splitChunks({
+        chunks: 'all',
+        minSize: 0, // 形成一个代码块的最小体积
+        maxAsyncRequests: 5, // 按需加载时最大的并行请求数
+        maxInitialRequests: 3, // 最大初始化请求数
+        automaticNameDelimiter: '~', // 打包分隔符
+        name: true,
+        cacheGroups: {
+          // default: {
+          //   name: 'common',
+          //   chunks: 'initial',
+          //   minChunks: 1 // 模块被引用2次以上的才抽离
+          // },
+          elementUi: {
+            name: 'elementUi',
+            chunks: 'all',
+            test: /[\\/]node_modules[\\/](element-ui)[\\/]/,
+            priority: 30,
+            minChunks: 2,
+          }
+          // quill: {
+          //   name: 'quill',
+          //   chunks: 'all',
+          //   test: /[\\/]node_modules[\\/](quill)[\\/]/,
+          //   priority: 31,
+          //   minChunks: 2
           // }
-          };
-        });
-    }
+        }
+      });
   },
   configureWebpack: {
     plugins: [
@@ -131,4 +146,10 @@ module.exports = {
   pluginOptions: {
     // ...
   }
+  // plugins: [
+  //   new BundleAnalyzerPlugin({
+  //     analyzerMode: 'disabled', // 不启动展示打包报告的http服务器
+  //     generateStatsFile: true, // 是否生成stats.json文件
+  //   })
+  // ]
 };

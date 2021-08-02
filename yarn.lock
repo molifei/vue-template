@@ -2761,9 +2761,9 @@ compressible@~2.0.16:
   dependencies:
     mime-db ">= 1.43.0 < 2"
 
-compression-webpack-plugin@^5.0.1:
+compression-webpack-plugin@^5.0.2:
   version "5.0.2"
-  resolved "https://registry.npm.taobao.org/compression-webpack-plugin/download/compression-webpack-plugin-5.0.2.tgz?cache=0&sync_timestamp=1610367126141&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fcompression-webpack-plugin%2Fdownload%2Fcompression-webpack-plugin-5.0.2.tgz#df84e682cfa1fb2a230e71cf83d50c323d5369c2"
+  resolved "https://registry.nlark.com/compression-webpack-plugin/download/compression-webpack-plugin-5.0.2.tgz?cache=0&sync_timestamp=1624626650884&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fcompression-webpack-plugin%2Fdownload%2Fcompression-webpack-plugin-5.0.2.tgz#df84e682cfa1fb2a230e71cf83d50c323d5369c2"
   integrity sha1-34Tmgs+h+yojDnHPg9UMMj1TacI=
   dependencies:
     cacache "^15.0.5"

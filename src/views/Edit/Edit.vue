@@ -8,6 +8,7 @@
         @blur="onEditorBlur($event)" @focus="onEditorFocus($event)"
         @change="onEditorChange($event)">
     </quill-editor>
+
     <el-button type="primary" v-on:click="saveHtml">保存</el-button>
     <transition name="plus-icon">
       <div v-if="flag" class="notify">
@@ -30,7 +31,7 @@ export default {
       editorOption: {
         theme: 'snow'
       }
-    }
+    };
   },
   computed: {
     editor() {
@@ -49,9 +50,9 @@ export default {
     },
     onEditorChange() { // 内容改变事件
       // 内容存进local
-      this.$tools.saveS('edit', this.content)
+      this.$tools.saveS('edit', this.content);
       // 隐藏弹窗
-      this.flag && (this.flag = false)
+      this.flag && (this.flag = false);
     },
     // eslint-disable-next-line no-unused-vars
     saveHtml(event) {
@@ -59,35 +60,35 @@ export default {
     },
     // 进入页面时，检测localStorage中是否有存储的值，防止用户误刷新
     editRemedy() {
-      let edit = this.$tools.getS('edit')
+      let edit = this.$tools.getS('edit');
       if (edit === null) {
-        this.content = ''
+        this.content = '';
       } else {
-        this.flag = true
+        this.flag = true;
       }
     },
     toFill(bool) {
       // 判断用户填充操作
       if (bool) {
         // 如果确认填充，获取存储的内容
-        this.content = this.$tools.getS('edit')
+        this.content = this.$tools.getS('edit');
         // 隐藏弹框
-        this.flag = false
+        this.flag = false;
       } else {
         // 如果取消填充
-        this.content = ''
+        this.content = '';
         // 清空local存储的值
-        this.$tools.delS('edit')
+        this.$tools.delS('edit');
         // 隐藏弹框
-        this.flag = false
+        this.flag = false;
       }
     }
   },
   created() {
-    this.editRemedy()
+    this.editRemedy();
   },
   components: {}
-}
+};
 </script>
 
 <style lang="less">
