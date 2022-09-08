@@ -23,7 +23,7 @@
     "es6-promise": "^4.2.8",
     "express": "^4.17.1",
     "file-saver": "^2.0.5",
-    "jszip": "^3.5.0",
+    "jszip": "^3.7.0",
     "lodash": "^4.17.15",
     "moment": "^2.24.0",
     "mysql": "^2.18.1",
